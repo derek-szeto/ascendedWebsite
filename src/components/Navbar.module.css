@@ -1,0 +1,209 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 2.5rem;
+  transition: box-shadow 0.3s, background 0.3s;
+}
+
+.scrolled {
+  box-shadow: 0 2px 20px rgba(7, 26, 18, 0.08);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  line-height: 0;
+  overflow: hidden;
+  background: var(--paper-warm);
+  border: 1.5px solid var(--brand-green);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(7, 26, 18, 0.06);
+  transition: box-shadow 0.2s;
+}
+
+.logoImg {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  object-position: center;
+  transform: translateY(0);
+  transition: transform 0.3s;
+}
+
+.logo:hover .logoImg {
+  transform: scale(1.03);
+}
+
+.logo:hover {
+  box-shadow: 0 4px 14px rgba(92, 203, 138, 0.22);
+}
+
+.logoSup {
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-family: var(--sans);
+  vertical-align: super;
+}
+
+.links {
+  display: flex;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.72rem;
+  border-radius: 2px;
+  position: relative;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+  display: block;
+}
+
+.navBtn::after {
+  content: '';
+  position: absolute;
+  left: 0.72rem;
+  right: 0.72rem;
+  bottom: -0.28rem;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s;
+}
+
+.navBtn:hover { color: var(--sage); }
+
+.navBtn:hover::after,
+.navBtn.active::after {
+  transform: scaleX(1);
+}
+
+.navBtn.active {
+  color: var(--sage);
+  background: var(--sage-pale);
+}
+
+.navSoon {
+  opacity: 0.55;
+}
+
+.soonBadge {
+  display: inline-block;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: rgba(232,180,79,0.15);
+  color: var(--gold);
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.drawer {
+  position: fixed;
+  top: var(--nav-height); left: 0; right: 0;
+  background: var(--paper-warm);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  box-shadow: 0 8px 24px rgba(7, 26, 18, 0.1);
+  z-index: 190;
+}
+
+.drawerBtn {
+  display: block;
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-radius: 2px;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.drawerBtn:hover { color: var(--sage); }
+.drawerBtn.active { color: var(--sage); background: var(--sage-pale); }
+
+@media (max-width: 720px) {
+  .nav {
+    padding: 0 1.25rem;
+  }
+  .logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+  }
+  .logoImg {
+    width: 45px;
+    height: 45px;
+    transform: translateY(0);
+  }
+  .logo:hover .logoImg {
+    transform: scale(1.03);
+  }
+  .links { display: none; }
+  .hamburger { display: flex; }
+}

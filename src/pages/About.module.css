@@ -1,0 +1,409 @@
+.page {
+  background: var(--paper-warm);
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 4.75rem 2.5rem 6rem;
+}
+
+.pageLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand-green);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pageLabel::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--brand-green);
+  opacity: 0.55;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+  max-width: 760px;
+}
+
+.para {
+  font-size: 1rem;
+  color: var(--charcoal);
+  line-height: 1.9;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  max-width: 760px;
+}
+
+/* ── TEAM ── */
+.principles {
+  margin: 4.25rem -2rem 4rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(22,101,52,0.12);
+  border-radius: 24px 6px 24px 6px;
+  background: linear-gradient(145deg, rgba(225,239,225,0.94), rgba(255,253,247,0.72));
+}
+
+.principlesHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  max-width: 760px;
+  padding-bottom: 1.65rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.principlesHeader span {
+  color: var(--brand-green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.principlesHeader span::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--brand-green);
+  opacity: 0.55;
+}
+
+.principlesHeader h3 {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  font-weight: 600;
+  line-height: 1.1;
+  max-width: 720px;
+}
+
+.principlesHeader h3 em {
+  color: var(--brand-green);
+  font-family: inherit;
+  font-style: normal !important;
+  font-weight: inherit;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-left: 1px solid var(--border);
+  margin-top: 0;
+}
+
+.principleCard {
+  min-height: 265px;
+  color: inherit;
+  padding: 1.45rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.24);
+  transition: background 0.22s, box-shadow 0.22s;
+}
+
+.principleCard::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(var(--gold), var(--mint));
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.26s ease;
+}
+
+.principleCard:hover {
+  background: rgba(255,255,255,0.52);
+  box-shadow: 0 18px 40px rgba(7,26,18,0.08);
+}
+
+.principleCard:hover::before {
+  transform: scaleY(1);
+}
+
+.principleLabel {
+  display: block;
+  color: var(--brand-green);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.principleCard h4 {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.12;
+  margin-bottom: 0.8rem;
+}
+
+.principleCard p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.teamIntro {
+  margin-top: 4.5rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  max-width: 760px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.65rem;
+}
+
+.teamIntro span {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brand-green);
+  opacity: 0.7;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.teamIntro span::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--brand-green);
+  opacity: 0.55;
+}
+
+.teamIntro strong {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  font-weight: 600;
+  line-height: 1.1;
+  max-width: 720px;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.teamCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.85rem;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+  align-items: center;
+  min-height: 132px;
+  overflow: hidden;
+  will-change: transform;
+  cursor: default;
+  position: relative;
+  transition: border-color 0.22s, background 0.22s;
+}
+
+.teamCard::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.24s ease;
+}
+
+.teamCard:hover {
+  border-color: rgba(22, 101, 52, 0.3);
+  background: rgba(255,255,255,0.72);
+}
+
+.teamCard:hover::before {
+  transform: scaleY(1);
+}
+
+.teamCard:hover .teamPhoto {
+  transform: scale(1.04);
+}
+
+/* Center the lone last card when it's by itself in the row */
+.teamCard:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 0.5rem);
+  justify-self: center;
+}
+
+.teamPhotoWrap {
+  width: 100px;
+  height: 112px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--sage-pale);
+}
+
+.teamPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.rishabhPhoto {
+  object-position: center 18%;
+}
+
+.teamInitial {
+  width: 100%;
+  height: 100%;
+  background: var(--sage-pale);
+  color: var(--sage);
+  font-weight: 600;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teamInfo { min-width: 0; }
+
+.teamName {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+
+.teamRole {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+
+@media (max-width: 720px) {
+  .missionBand { padding: 4rem 1.5rem 4.5rem; }
+  .statsBand { padding: 0 1.25rem; }
+  .inner { padding: 3rem 1.25rem 5rem; }
+  .pageLabel,
+  .principlesHeader span,
+  .teamIntro span {
+    gap: 0.5rem;
+  }
+  .principles { margin-top: 3.25rem; margin-bottom: 3.25rem; }
+  .principlesHeader,
+  .teamIntro { gap: 0.6rem; }
+  .principlesGrid {
+    grid-template-columns: 1fr;
+  }
+  .principleCard {
+    min-height: auto;
+    padding: 1.35rem;
+  }
+  .teamGrid { grid-template-columns: 1fr; }
+  .teamCard:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: 100%;
+    justify-self: auto;
+  }
+}
+
+/* Editorial refresh */
+.inner {
+  position: relative;
+}
+
+.inner::before {
+  content: 'OUR STORY';
+  position: absolute;
+  right: 1rem;
+  top: 3rem;
+  color: rgba(22,101,52,0.035);
+  font-family: var(--serif);
+  font-size: clamp(6rem, 14vw, 11rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.inner > * { position: relative; z-index: 1; }
+
+.principlesGrid {
+  gap: 0.85rem;
+  border: 0;
+  margin-top: 1.4rem;
+}
+
+.principleCard {
+  border: 1px solid rgba(22,101,52,0.14);
+  border-radius: 18px 5px 18px 5px;
+  background: rgba(255,255,255,0.58);
+  box-shadow: 0 16px 42px rgba(7,26,18,0.055);
+}
+
+.principleCard:hover {
+  border-color: rgba(232,180,79,0.42);
+  box-shadow: 0 24px 58px rgba(7,26,18,0.1);
+}
+
+.teamGrid { gap: 0.9rem; }
+
+.teamCard {
+  min-height: 154px;
+  padding: 1rem;
+  border-color: rgba(22,101,52,0.14);
+  border-radius: 18px 5px 18px 5px;
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 14px 38px rgba(7,26,18,0.05);
+}
+
+.teamCard:hover {
+  border-color: rgba(232,180,79,0.42);
+  box-shadow: 0 24px 58px rgba(7,26,18,0.11);
+}
+
+.teamPhotoWrap { border-radius: 13px 3px 13px 3px; }
+
+@media (max-width: 720px) {
+  .inner::before { display: none; }
+  .principles { margin-left: -1rem; margin-right: -1rem; padding: 2rem 1rem; }
+  .principlesGrid { grid-template-columns: 1fr; }
+  .teamGrid { grid-template-columns: 1fr; }
+  .teamCard:last-child:nth-child(odd) { grid-column: auto; max-width: none; }
+}

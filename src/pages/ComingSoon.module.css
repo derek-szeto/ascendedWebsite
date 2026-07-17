@@ -1,0 +1,81 @@
+.page {
+  background: var(--ink);
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page::before,
+.page::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.page::before {
+  height: 54px;
+  background: var(--brand-green);
+  clip-path: polygon(0 60%, 68% 10%, 100% 38%, 100% 100%, 0 100%);
+}
+
+.page::after {
+  height: 28px;
+  background: var(--gold);
+  clip-path: polygon(0 70%, 45% 15%, 80% 52%, 100% 8%, 100% 100%, 0 100%);
+}
+
+.card {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 480px;
+}
+
+.label {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--sage-light);
+  margin: 0 0 1rem;
+  line-height: 1.15;
+}
+
+.sub {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 2rem;
+}
+
+.btn {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--gold), #f2ca74);
+  color: var(--forest);
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
