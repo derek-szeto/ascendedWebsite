@@ -1,47 +1,30 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Modal from './Modal';
 import styles from './HomePrograms.module.css';
-
-const modalContent = {
-  title: 'Fundraising Events',
-  body: 'We are planning student-led fundraising events for summer 2026. Dates and details are still being finalized, and all revenue will be tracked publicly and donated in full.',
-};
 
 const programs = [
   {
-    num: '01',
     icon: 'classes',
     title: 'Community Classes',
-    desc: 'Free and low-cost tutoring in math, computer science, and SAT/ACT prep at Ascend-Ed class-site grounds, built to make academic support easier to reach. Any money raised from classes goes back toward supporting education access in Illinois.',
+    desc: 'Free tutoring in math, computer science, and SAT/ACT prep at Ascend-Ed class-site grounds, built to make academic support easier to reach. Any money raised from classes goes back toward supporting education access in Illinois.',
     tone: 'white',
     action: 'classes',
   },
   {
-    num: '02',
     icon: 'events',
     title: 'Fundraising Events',
     desc: 'Student-run fundraisers that turn community support into real help for Illinois students, with clear tracking so supporters know exactly where the money goes.',
     badge: 'Coming Summer 2026',
-    tone: 'mint',
+    tone: 'white',
     action: 'events',
   },
   {
-    num: '03',
     icon: 'store',
     title: 'Merch & Online Store',
-    desc: 'Merch designed to spread the mission and raise money for education access.',
-    badge: 'Coming Soon',
-    tone: 'gold',
+    desc: 'Ascend-Ed Merch designed to spread the mission and raise money for education access.',
+    tone: 'white',
     action: 'store',
   },
-];
-
-const programFlow = [
-  { label: 'Learn', text: 'Classes at our site grounds' },
-  { label: 'Gather', text: 'Student-led events' },
-  { label: 'Give', text: 'Support tracked publicly' },
 ];
 
 function ProgramIcon({ type }) {
@@ -56,12 +39,18 @@ function ProgramIcon({ type }) {
 
 export default function HomePrograms() {
   const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState(false);
+
+  const scrollToSection = (id) => {
+    navigate(`/#${id}`);
+    window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  };
 
   const openProgram = (action) => {
-    if (action === 'classes') navigate('/#classes');
-    else if (action === 'store') navigate('/store');
-    else setModalOpen(true);
+    if (action === 'classes') scrollToSection('classes');
+    else if (action === 'events') scrollToSection('donate');
+    else if (action === 'store') window.location.assign('https://futureascended.myshopify.com');
   };
 
   return (
@@ -73,20 +62,12 @@ export default function HomePrograms() {
           <h2>How we’re expanding <em>access to education</em></h2>
           <p>Each program is built to be useful on its own and stronger together. The goal is to make support easy to join, easy to understand, and easy to trust. We show how the mission becomes action.</p>
         </motion.header>
-
-        <div className={styles.flow}>
-          {programFlow.map((item, index) => (
-            <motion.article key={item.label} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}>
-              <small>0{index + 1}</small><h3>{item.label}</h3><p>{item.text}</p>
-            </motion.article>
-          ))}
-        </div>
         </div>
 
         <div className={styles.programList}>
           {programs.map((program, index) => (
             <motion.article
-              key={program.num}
+              key={program.title}
               className={`${styles.program} ${styles[program.tone]}`}
               role="button"
               tabIndex={0}
@@ -98,20 +79,18 @@ export default function HomePrograms() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
             >
-              <div className={styles.programLead}><small>{program.num}</small><span className={styles.icon}><ProgramIcon type={program.icon}/></span></div>
+              <div className={styles.programLead}><span className={styles.icon}><ProgramIcon type={program.icon}/></span></div>
               <div className={styles.programCopy}><h3>{program.title}</h3><p>{program.desc}</p></div>
-              <div className={styles.programAction}>{program.badge && <span>{program.badge}</span>}<b aria-hidden>&rarr;</b></div>
+              <div className={styles.programAction}><b aria-hidden>&rarr;</b></div>
             </motion.article>
           ))}
         </div>
 
         <motion.div className={styles.cta} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div><span>Want to help build one?</span><h2>Programs get stronger when <em>more people show up.</em></h2></div>
-          <button onClick={() => navigate('/get-involved')}>Get involved <span aria-hidden>&rarr;</span></button>
+          <div><span>Want to help us Grow?</span><h2>Programs get stronger when <em>more people show up.</em></h2></div>
+          <button onClick={() => scrollToSection('get-involved')}>Get involved <span aria-hidden>&rarr;</span></button>
         </motion.div>
       </div>
-
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={modalContent.title} body={modalContent.body}/>
     </section>
   );
 }

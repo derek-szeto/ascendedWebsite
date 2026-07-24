@@ -541,6 +541,20 @@
   border-color: rgba(232,180,79,0.35);
 }
 
+.posterSubjects > div.posterSubjectTest {
+  border-color: rgba(201,137,18,.35);
+  background:
+    linear-gradient(110deg, rgba(255,250,232,.98), rgba(246,252,247,.82)),
+    #fffef9;
+  box-shadow: 0 14px 34px rgba(126,88,13,.1);
+}
+
+.posterSubjects > div.posterSubjectTest::before {
+  width: 4px;
+  background: linear-gradient(var(--gold), var(--brand-green));
+  opacity: .9;
+}
+
 .posterSubjects strong {
   color: var(--forest);
   font-family: var(--serif);
@@ -560,6 +574,25 @@
   color: var(--muted);
   font-size: 0.835rem;
   line-height: 1.5;
+}
+
+.posterAudience {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  margin-top: .18rem;
+  padding: .38rem .58rem;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  background: var(--brand-green);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .075em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  box-shadow: 0 7px 16px rgba(22,101,52,.2);
 }
 
 .posterDetails {
@@ -2645,17 +2678,15 @@ button.tutorProfileBtn:disabled {
   position: relative;
   overflow: hidden;
   scroll-margin-top: 2rem;
-  background:
-    radial-gradient(circle at 88% 12%, rgba(22,101,52,0.16), transparent 23rem),
-    radial-gradient(circle at 12% 82%, rgba(255,255,255,0.5), transparent 20rem),
-    linear-gradient(135deg, #f1d47f, #f8e8b5 48%, #dcebdc);
+  background: #f8f3e7;
 }
 
 .homeFaq::before {
   content: 'QUESTIONS';
   position: absolute;
   right: -1rem;
-  top: 1rem;
+  top: auto;
+  bottom: -1.5rem;
   color: rgba(22,101,52,0.035);
   font-family: var(--serif);
   font-size: clamp(7.498rem, 16vw, 13.926rem);
@@ -3494,8 +3525,8 @@ button.tutorProfileBtn:disabled {
 
 .wayRow {
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 0;
   padding: 2.5rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   align-items: start;
@@ -3508,20 +3539,6 @@ button.tutorProfileBtn:disabled {
 
 .wayRow:hover {
   border-bottom-color: rgba(232,180,79,0.2);
-}
-
-.wayLeft {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.wayNum {
-  color: var(--gold);
-  font-family: var(--serif);
-  font-size: 1.928rem;
-  font-weight: 600;
 }
 
 .wayBody {
@@ -3539,9 +3556,9 @@ button.tutorProfileBtn:disabled {
 .wayTag {
   background: rgba(92,203,138,0.15);
   color: var(--mint);
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
-  font-size: 0.696rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -3550,15 +3567,15 @@ button.tutorProfileBtn:disabled {
 .wayTitle {
   color: #fff;
   font-family: var(--serif);
-  font-size: 1.607rem;
+  font-size: clamp(2rem, 2.6vw, 2.5rem);
   font-weight: 600;
 }
 
 .wayDesc {
   color: rgba(255,255,255,0.5);
-  font-size: 1.018rem;
-  line-height: 1.65;
-  max-width: 500px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 680px;
 }
 
 .contactBand {
@@ -3893,7 +3910,7 @@ button.tutorProfileBtn:disabled {
 .contactBand {
   position: relative;
   border-color: rgba(22,101,52,.22);
-  background: linear-gradient(135deg, #e8f2df, #fffdf5 62%, #f6e7b7);
+  background: #f8f3e7;
   overflow: hidden;
 }
 
@@ -3973,7 +3990,7 @@ button.tutorProfileBtn:disabled {
   .fitCard { min-height: auto; }
   .donateSection { padding: 2rem 1.4rem; }
   .waysSection { padding: 1.35rem; }
-  .wayRow { grid-template-columns: 50px 1fr; padding: 1.25rem; }
+  .wayRow { grid-template-columns: 1fr; padding: 1.25rem; }
   .involvedTechVisuals b:first-of-type { right: -2.5rem; opacity: .2; }
   .involvedTechVisuals b:last-of-type { display: none; }
 }

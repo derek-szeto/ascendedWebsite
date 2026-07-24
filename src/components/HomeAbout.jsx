@@ -6,22 +6,16 @@ import styles from './HomeAbout.module.css';
 
 const principles = [
   {
-    num: '01',
-    label: 'Student-run',
-    title: 'Decisions stay close to students',
-    body: 'We test ideas quickly, listen to families, and keep the work practical.',
+    title: 'Student-led',
+    body: 'Decisions stay close to students. We test ideas quickly, listen to families, and keep the work practical.',
   },
   {
-    num: '02',
-    label: 'Transparent',
-    title: 'Every contribution stays visible',
-    body: 'Public breakdowns connect what comes in to where it goes.',
+    title: 'Transparent',
+    body: 'Every contribution stays visible. Public breakdowns connect what comes in to where it goes.',
   },
   {
-    num: '03',
-    label: 'Illinois-focused',
-    title: 'Built locally, aimed statewide',
-    body: 'We begin with nearby communities and direct support toward education access across Illinois.',
+    title: 'Illinois-Focused',
+    body: 'Ascend-Ed is built locally, aimed statewide. We begin with nearby communities and direct support toward education access across Illinois.',
   },
 ];
 
@@ -54,15 +48,12 @@ export default function HomeAbout() {
           <motion.div className={styles.storyCopy} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .1 }}>
             <p>We started Ascend-Ed after learning how much a student&apos;s school resources can depend on where they live. In some Illinois communities, that difference can exceed $12,000 per student each year.</p>
             <p>Our work is grounded in practical action: expanding access to learning, raising funds responsibly, and providing support where it can make the most meaningful difference.</p>
-            <strong>Student-led. Volunteer-powered. Transparency.</strong>
           </motion.div>
         </div>
 
         <div className={styles.principles}>
           {principles.map((principle, index) => (
-            <motion.article key={principle.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5 }} viewport={{ once: true }} transition={{ delay: index * .08 }}>
-              <small>{principle.num}</small>
-              <span>{principle.label}</span>
+            <motion.article key={principle.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5 }} viewport={{ once: true }} transition={{ delay: index * .08 }}>
               <h3>{principle.title}</h3>
               <p>{principle.body}</p>
             </motion.article>

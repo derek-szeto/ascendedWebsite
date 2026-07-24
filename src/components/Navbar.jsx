@@ -12,7 +12,7 @@ const links = [
   { to: '/#faq', label: 'FAQ', section: 'faq' },
   { to: '/#issue', label: 'Issue', section: 'issue' },
   { to: '/#get-involved', label: 'Get Involved', section: 'get-involved' },
-  { to: '/store', label: 'Store', soon: true },
+  { to: 'https://futureascended.myshopify.com', label: 'Store', external: true },
 ];
 
 export default function Navbar() {
@@ -31,7 +31,7 @@ export default function Navbar() {
     if (to?.includes('#')) return;
 
     window.setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, 90);
   };
 
@@ -82,16 +82,22 @@ export default function Navbar() {
       <ul className={styles.links}>
         {links.map((link) => (
           <li key={link.to}>
-            <NavLink
-              to={link.to}
-              className={({ isActive }) =>
-                `${styles.navBtn} ${isLinkActive(link, isActive) ? styles.active : ''} ${link.soon ? styles.navSoon : ''}`
-              }
-              onClick={() => handleNavClick(link.to)}
-            >
-              {link.label}
-              {link.soon && <span className={styles.soonBadge}>soon</span>}
-            </NavLink>
+            {link.external ? (
+              <a href={link.to} className={styles.navBtn} onClick={() => setMenuOpen(false)}>
+                {link.label}
+              </a>
+            ) : (
+              <NavLink
+                to={link.to}
+                className={({ isActive }) =>
+                  `${styles.navBtn} ${isLinkActive(link, isActive) ? styles.active : ''} ${link.soon ? styles.navSoon : ''}`
+                }
+                onClick={() => handleNavClick(link.to)}
+              >
+                {link.label}
+                {link.soon && <span className={styles.soonBadge}>soon</span>}
+              </NavLink>
+            )}
           </li>
         ))}
       </ul>
@@ -122,16 +128,22 @@ export default function Navbar() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.045, duration: 0.18, ease: 'easeOut' }}
               >
-                <NavLink
-                  to={link.to}
-                  onClick={() => handleNavClick(link.to)}
-                  className={({ isActive }) =>
-                    `${styles.drawerBtn} ${isLinkActive(link, isActive) ? styles.active : ''}`
-                  }
-                >
-                  {link.label}
-                  {link.soon && <span className={styles.soonBadge}>soon</span>}
-                </NavLink>
+                {link.external ? (
+                  <a href={link.to} onClick={() => setMenuOpen(false)} className={styles.drawerBtn}>
+                    {link.label}
+                  </a>
+                ) : (
+                  <NavLink
+                    to={link.to}
+                    onClick={() => handleNavClick(link.to)}
+                    className={({ isActive }) =>
+                      `${styles.drawerBtn} ${isLinkActive(link, isActive) ? styles.active : ''}`
+                    }
+                  >
+                    {link.label}
+                    {link.soon && <span className={styles.soonBadge}>soon</span>}
+                  </NavLink>
+                )}
               </motion.div>
             ))}
           </motion.div>

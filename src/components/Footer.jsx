@@ -9,7 +9,7 @@ const links = [
   { to: '/#faq', label: 'FAQ' },
   { to: '/#issue', label: 'Issue' },
   { to: '/#get-involved', label: 'Get Involved' },
-  { to: '/store', label: 'Store · Soon' },
+  { to: 'https://futureascended.myshopify.com', label: 'Store', external: true },
 ];
 
 export default function Footer() {
@@ -25,8 +25,10 @@ export default function Footer() {
         <div className={styles.navigation}>
           <span className={styles.columnLabel}>Explore</span>
           <nav className={styles.nav} aria-label="Footer navigation">
-            {links.map(({ to, label }, index) => (
-              <NavLink key={to} to={to} className={styles.link}><small>0{index + 1}</small>{label}</NavLink>
+            {links.map(({ to, label, external }, index) => (
+              external
+                ? <a key={to} href={to} className={styles.link}><small>0{index + 1}</small>{label}</a>
+                : <NavLink key={to} to={to} className={styles.link}><small>0{index + 1}</small>{label}</NavLink>
             ))}
           </nav>
         </div>
