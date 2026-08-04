@@ -83,7 +83,7 @@ export default function Navbar() {
         {links.map((link) => (
           <li key={link.to}>
             {link.external ? (
-              <a href={link.to} className={styles.navBtn} onClick={() => setMenuOpen(false)}>
+              <a href={link.to} target="_blank" rel="noopener noreferrer" className={styles.navBtn} onClick={() => setMenuOpen(false)}>
                 {link.label}
               </a>
             ) : (
@@ -129,7 +129,7 @@ export default function Navbar() {
                 transition={{ delay: i * 0.045, duration: 0.18, ease: 'easeOut' }}
               >
                 {link.external ? (
-                  <a href={link.to} onClick={() => setMenuOpen(false)} className={styles.drawerBtn}>
+                  <a href={link.to} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className={styles.drawerBtn}>
                     {link.label}
                   </a>
                 ) : (

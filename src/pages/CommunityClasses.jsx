@@ -114,24 +114,24 @@ export default function CommunityClasses() {
               <h2>Kenneth Young Center</h2>
               <p>650 E. Algonquin Rd., Suite 104<br />Schaumburg, IL</p>
             </div>
-            <div className={styles.locationStatus}><i /> Now enrolling</div>
+            <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
           </motion.div>
 
-          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
+          <motion.div className={`${styles.locationCard} ${styles.comingSoon}`} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
             <div className={`${styles.locationLead} ${styles.locationLeadWithLogo}`}>
               <img src={nationalIndiaHubLogo} alt="National India Hub" className={styles.siteLogo} />
               <div>
                 <h2>National India Hub</h2>
-                <p>930 National Pkwy<br />Schaumburg, Illinois</p>
+                <p>930 National Pkwy<br />Schaumburg, Illinois<br />Weekly Tuesdays, 5–6 PM</p>
               </div>
             </div>
-            <div className={styles.locationStatus}><i /> Enrolling now</div>
+            <div className={styles.locationStatus}><i /> Coming soon</div>
           </motion.div>
 
           <motion.div className={styles.registerCard} id="register" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.20 }}>
-            <div><span className={styles.eyebrow}>Ready to begin?</span><h2>Tell us what support would help.</h2></div>
-            <p>Complete the short intake form. We&apos;ll use your responses to help organize the right subject support and share confirmed session details.</p>
-            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className={`${styles.registerBtn} cta-glow`}>Register for classes <span aria-hidden>&rarr;</span></a>
+            <div><span className={styles.eyebrow}>National India Hub applications</span><h2>Tell us what support would help.</h2></div>
+            <p>Applications are currently available only for the upcoming National India Hub classes, held weekly on Tuesdays from 5–6 PM.</p>
+            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className={`${styles.registerBtn} cta-glow`}>Apply for India Hub <span aria-hidden>&rarr;</span></a>
           </motion.div>
         </div>
       </section>
@@ -165,8 +165,8 @@ export default function CommunityClasses() {
                 </motion.div>
               </AnimatePresence>
               <div className={styles.materialBrowserHint}>
-                <span>Interested in strengthening your knowledge in these topics?</span>
-                <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">Register now <i aria-hidden>→</i></a>
+                <span>Interested in strengthening your knowledge in these topics at National India Hub?</span>
+                <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">Apply for India Hub <i aria-hidden>→</i></a>
               </div>
             </div>
             <AnimatePresence mode="wait" initial={false}>

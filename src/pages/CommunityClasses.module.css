@@ -553,6 +553,17 @@
   .locationLeadWithLogo .siteLogo { top: 1.5rem; right: 1.5rem; width: 4rem; }
 }
 
+.locationCard .locationStatus.notEnrolling {
+  border-color: rgba(190, 42, 42, .25);
+  background: rgba(190, 42, 42, .1);
+  color: #b42323;
+}
+
+.locationCard .locationStatus.notEnrolling i {
+  background: #d63b3b;
+  box-shadow: 0 0 0 5px rgba(214, 59, 59, .12);
+}
+
 /* Interactive curriculum list */
 .subjectGrid article { cursor: pointer; }
 

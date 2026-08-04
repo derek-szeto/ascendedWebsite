@@ -591,17 +591,18 @@ export default function Home() {
               <span className={styles.donateEyebrow}>Most direct way to help</span>
               <h3 className={styles.donateTitle}>The funding gap is real. Change starts <em>here.</em></h3>
               <p className={styles.donateSub}>Help Ascend-Ed fund education access in Illinois. Your donation supports trusted education groups in Illinois. We track what comes in and post where it goes.</p>
-              <div className={styles.trustBadges}>
-                {['No overhead', 'Every dollar tracked', 'Public breakdowns'].map((badge, i) => (
-                  <motion.span
-                    key={badge}
+              <div className={styles.ethicsCommitments} aria-label="Our funding commitments">
+                {['No overhead', 'Every dollar tracked', 'Public breakdowns'].map((commitment, i) => (
+                  <motion.div
+                    key={commitment}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.42, delay: i * 0.08 }}
                   >
-                    {badge}
-                  </motion.span>
+                    <span aria-hidden />
+                    <strong>{commitment}</strong>
+                  </motion.div>
                 ))}
               </div>
             </div>

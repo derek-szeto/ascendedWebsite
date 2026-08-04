@@ -3452,22 +3452,33 @@ button.tutorProfileBtn:disabled {
   max-width: 480px;
 }
 
-.trustBadges {
+.ethicsCommitments {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 0.5rem;
+  gap: .8rem 2rem;
+  margin-top: .65rem;
 }
 
-.trustBadges span {
-  background: rgba(92,203,138,0.15);
-  border: 1px solid rgba(92,203,138,0.3);
+.ethicsCommitments > div {
+  display: flex;
+  gap: .55rem;
+  align-items: center;
+}
+
+.ethicsCommitments span {
+  width: .38rem;
+  height: .38rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.ethicsCommitments strong {
   color: var(--mint);
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.803rem;
+  font-size: .8rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: .055em;
+  line-height: 1.35;
   text-transform: uppercase;
 }
 
@@ -3826,18 +3837,6 @@ button.tutorProfileBtn:disabled {
 
 .donateTitle em { animation: donateTitleGlow 4.5s ease-in-out infinite; }
 .donateBtn { animation: donateButtonEnergy 3.4s ease-in-out infinite; }
-.trustBadges span { position: relative; overflow: hidden; }
-.trustBadges span::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 28%, rgba(255,255,255,.2) 48%, transparent 68%);
-  transform: translateX(-130%);
-  animation: donateBadgeSweep 5.4s ease-in-out infinite;
-}
-.trustBadges span:nth-child(2)::after { animation-delay: .65s; }
-.trustBadges span:nth-child(3)::after { animation-delay: 1.3s; }
-
 .donateEyebrow { color: var(--gold); }
 .donateTitle { max-width: 720px; font-size: clamp(2.35rem,4vw,3.6rem); line-height: 1.05; }
 .donateTitle em { color: var(--mint); font-family: var(--accent-font); font-style: italic !important; font-weight: 600; }
@@ -3967,15 +3966,12 @@ button.tutorProfileBtn:disabled {
 @keyframes donateNode { 0%,100% { opacity: .35; transform: scale(.72); } 50% { opacity: 1; transform: scale(1.15); } }
 @keyframes donateTitleGlow { 0%,100% { text-shadow: 0 0 0 rgba(92,203,138,0); } 50% { text-shadow: 0 0 24px rgba(92,203,138,.18); } }
 @keyframes donateButtonEnergy { 0%,100% { box-shadow: 0 14px 34px rgba(232,180,79,.25), 0 0 0 6px rgba(232,180,79,.07); } 50% { box-shadow: 0 17px 42px rgba(232,180,79,.34), 0 0 0 10px rgba(232,180,79,.025); } }
-@keyframes donateBadgeSweep { 0%,62% { transform: translateX(-130%); } 82%,100% { transform: translateX(130%); } }
-
 @media (prefers-reduced-motion: reduce) {
   .getInvolvedHeader::after,
   .donateSection::after,
   .donateTech i,
   .donateTitle em,
   .donateBtn,
-  .trustBadges span::after,
   .fitGrid::before,
   .involvedTechVisuals i,
   .involvedTechVisuals b { animation: none; }
@@ -3989,6 +3985,7 @@ button.tutorProfileBtn:disabled {
   .fitGrid::before { display: none; }
   .fitCard { min-height: auto; }
   .donateSection { padding: 2rem 1.4rem; }
+  .ethicsCommitments { gap: .65rem 1.25rem; }
   .waysSection { padding: 1.35rem; }
   .wayRow { grid-template-columns: 1fr; padding: 1.25rem; }
   .involvedTechVisuals b:first-of-type { right: -2.5rem; opacity: .2; }
