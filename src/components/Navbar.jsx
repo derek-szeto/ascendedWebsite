@@ -12,7 +12,7 @@ const links = [
   { to: '/#faq', label: 'FAQ', section: 'faq' },
   { to: '/#issue', label: 'Issue', section: 'issue' },
   { to: '/#get-involved', label: 'Get Involved', section: 'get-involved' },
-  { to: 'https://futureascended.myshopify.com', label: 'Store', external: true },
+  { to: '/store', label: 'Store' },
 ];
 
 export default function Navbar() {

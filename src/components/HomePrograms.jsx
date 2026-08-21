@@ -50,7 +50,7 @@ export default function HomePrograms() {
   const openProgram = (action) => {
     if (action === 'classes') scrollToSection('classes');
     else if (action === 'events') scrollToSection('donate');
-    else if (action === 'store') window.open('https://futureascended.myshopify.com', '_blank', 'noopener,noreferrer');
+    else if (action === 'store') navigate('/store');
   };
 
   return (

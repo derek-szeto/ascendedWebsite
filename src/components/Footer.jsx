@@ -9,7 +9,7 @@ const links = [
   { to: '/#faq', label: 'FAQ' },
   { to: '/#issue', label: 'Issue' },
   { to: '/#get-involved', label: 'Get Involved' },
-  { to: 'https://futureascended.myshopify.com', label: 'Store', external: true },
+  { to: '/store', label: 'Store' },
 ];
 
 export default function Footer() {

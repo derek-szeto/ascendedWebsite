@@ -8,11 +8,9 @@ import BackToTop from './components/BackToTop';
 import RouteDecor from './components/RouteDecor';
 import useTabTitle from './hooks/useTabTitle';
 import Home from './pages/Home';
-import Issue from './pages/Issue';
 import About from './pages/About';
 import Privacy from './pages/Privacy';
-import GetInvolved from './pages/GetInvolved';
-import ComingSoon from './pages/ComingSoon';
+import Store from './pages/Store';
 
 const pageVariants = {
   initial: { opacity: 0, y: 16, scale: 0.995, filter: 'blur(4px)' },
@@ -78,7 +76,7 @@ function AnimatedRoutes() {
           <Route path="/programs" element={<Navigate to="/#programs" replace />} />
           <Route path="/programs/community-classes" element={<Navigate to="/#classes" replace />} />
           <Route path="/registration" element={<Navigate to="/#register" replace />} />
-          <Route path="/store" element={<ComingSoon title="Store" />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/get-involved" element={<Navigate to="/#get-involved" replace />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<About />} />
