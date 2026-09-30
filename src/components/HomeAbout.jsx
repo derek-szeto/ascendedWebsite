@@ -1,23 +1,10 @@
+import AboutPrinciples from './AboutPrinciples';
+import TeamProfile from './TeamProfile';
 import { motion } from 'framer-motion';
 import { teamMembers } from '../data/teamMembers';
-import derekPhoto from '../assets/derek.jpg';
+import derekPhoto from '../assets/dereknew.png';
 import rishabhPhoto from '../assets/betterrishabh.jpg';
 import styles from './HomeAbout.module.css';
-
-const principles = [
-  {
-    title: 'Student-led',
-    body: 'Decisions stay close to students. We test ideas quickly, listen to families, and keep the work practical.',
-  },
-  {
-    title: 'Transparent',
-    body: 'Every contribution stays visible. Public breakdowns connect what comes in to where it goes.',
-  },
-  {
-    title: 'Illinois-Focused',
-    body: 'Ascend-Ed is built locally, aimed statewide. We begin with nearby communities and direct support toward education access across Illinois.',
-  },
-];
 
 const roles = {
   'Aarush Bharthepudi': 'Co-Founder & Director',
@@ -25,6 +12,7 @@ const roles = {
   'Rishabh Dalal': 'Co-Founder · Curriculum & Community Outreach',
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
+  'Dhruv Dayeneni': 'Tutor & Incoming Director',
 };
 
 const photoOverrides = {
@@ -41,8 +29,8 @@ export default function HomeAbout() {
           <motion.header initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className={styles.eyebrow}>About Ascend-Ed</span>
             <h2>
-              <span className={styles.titleLead}>Five students. One state.</span>
-              <em className={styles.titleAccent}>A gap that we couldn&rsquo;t ignore.</em>
+              <span className={styles.titleLead}>High school students</span>
+              <span className={styles.titleFollow}>who couldn&rsquo;t ignore the education gap.</span>
             </h2>
           </motion.header>
           <motion.div className={styles.storyCopy} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .1 }}>
@@ -51,18 +39,11 @@ export default function HomeAbout() {
           </motion.div>
         </div>
 
-        <div className={styles.principles}>
-          {principles.map((principle, index) => (
-            <motion.article key={principle.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -5 }} viewport={{ once: true }} transition={{ delay: index * .08 }}>
-              <h3>{principle.title}</h3>
-              <p>{principle.body}</p>
-            </motion.article>
-          ))}
-        </div>
+        <AboutPrinciples />
 
         <div className={styles.teamHeader}>
           <span>Student-led team</span>
-          <h3>The people <em>moving it forward.</em></h3>
+          <h3>The people moving it forward.</h3>
         </div>
         <div className={styles.team}>
           {teamMembers.map((member, index) => {
@@ -70,9 +51,10 @@ export default function HomeAbout() {
             return (
               <motion.article key={member.name} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}>
                 <div className={styles.photo}>
-                  {photo ? <img src={photo} alt={member.name} /> : <span>{member.initials}</span>}
+                  {photo ? <img src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale }} /> : <span>{member.initials}</span>}
                 </div>
-                <div><h4>{member.name}</h4><p>{roles[member.name] || 'Team Member'}</p></div>
+                <div><h4>{member.name === 'Derek Szeto' ? <>Derek<br />Szeto</> : member.name}</h4><p>{roles[member.name] || 'Team Member'}</p><span className={styles.profileHint}>View profile ↗</span></div>
+                <TeamProfile member={member} photo={photo} role={roles[member.name] || 'Team Member'} />
               </motion.article>
             );
           })}

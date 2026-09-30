@@ -1,0 +1,15 @@
+.graphic { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 4rem); padding: 2rem clamp(1.5rem, 4vw, 3.5rem) 2.25rem; overflow: hidden; border: 1px solid #16653424; border-radius: 24px; background: linear-gradient(120deg, #ffffffed, #fafbf2e0); box-shadow: 0 16px 44px #071a1209; }
+.connection { position: absolute; z-index: -1; top: calc(2rem + 60px); left: 17%; right: 17%; height: 1px; background: linear-gradient(90deg, #16653440, #c9891266, #16653440); }
+.idea { min-width: 0; text-align: center; }
+.illustration { display: block; width: 120px; height: 120px; margin: 0 auto 1rem; color: var(--brand-green); }
+.halo { fill: #eff4e9; stroke: #16653420; stroke-width: 1; }
+.idea:nth-child(3) .illustration { color: #9b721e; }
+.idea:nth-child(3) .halo { fill: #fbf5e7; stroke: #c9891233; }
+.idea p { max-width: 30ch; margin: 0 auto; font-size: 1.05rem; line-height: 1.75; color: #5f7366; text-wrap: pretty; }
+@media (max-width: 650px) {
+  .graphic { grid-template-columns: 1fr; gap: 1.75rem; padding: 1.5rem; }
+  .connection { top: 3rem; bottom: 3rem; left: calc(1.5rem + 40px); right: auto; height: auto; width: 1px; background: linear-gradient(#16653440, #c9891266, #16653440); }
+  .idea { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 1rem; align-items: center; text-align: left; }
+  .illustration { width: 80px; height: 80px; margin: 0; }
+  .idea p { max-width: none; font-size: 1.05rem; }
+}

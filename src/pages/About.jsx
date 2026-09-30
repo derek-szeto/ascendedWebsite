@@ -1,27 +1,17 @@
+import AboutPrinciples from '../components/AboutPrinciples';
+import TeamProfile from '../components/TeamProfile';
 import { motion } from 'framer-motion';
 import Marquee from '../components/Marquee';
 import EditorialHero from '../components/EditorialHero';
 import { teamMembers } from '../data/teamMembers';
-import derekPhoto from '../assets/derek.jpg';
+import derekPhoto from '../assets/dereknew.png';
 import rishabhPhoto from '../assets/rishabh.jpg';
 import styles from './About.module.css';
 
-const principles = [
-  {
-    label: 'Student-run',
-    title: 'Built by people close to the problem',
-    body: 'We are students organizing around a gap we could not unsee, then turning that concern into classes, fundraising, and direct support.',
-  },
-  {
-    label: 'Transparency',
-    title: 'Supporters should see where money goes',
-    body: 'No hidden cut, no vague promise. We track what comes in and post public breakdowns so the work stays accountable.',
-  },
-  {
-    label: 'Illinois-focused',
-    title: 'Local action for a statewide issue',
-    body: 'The funding gap reaches beyond one city. Our work stays focused on students and trusted education organizations in Illinois.',
-  },
+const aboutSections = [
+  { label: 'Our Story', detail: 'Why we decided to act', href: '#our-story' },
+  { label: 'Our Principles', detail: 'How Ascend-Ed works', href: '#our-principles' },
+  { label: 'Our Team', detail: 'The people moving it forward', href: '#our-team' },
 ];
 
 const roles = {
@@ -30,6 +20,7 @@ const roles = {
   'Rishabh Dalal': 'Co-Founder · Curriculum & Community Outreach',
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
+  'Dhruv Dayeneni': 'Tutor & Incoming Director',
 };
 
 const photoOverrides = {
@@ -68,9 +59,9 @@ export default function About() {
       <EditorialHero
         chapter="03"
         eyebrow="About Ascend-Ed"
-        title={<>Five students. One state. <em>A gap we couldn&apos;t ignore.</em></>}
+        title={<>Students. One state. <em>A gap we couldn&apos;t ignore.</em></>}
         description="We built Ascend-Ed to turn concern into useful local action—community classes, transparent fundraising, and direct support for education access."
-        items={principles.map((item) => ({ label: item.label, detail: item.title }))}
+        items={aboutSections}
       />
       <Marquee variant="light" />
 
@@ -85,7 +76,7 @@ export default function About() {
           About Us
         </motion.div>
 
-        <div>
+        <div id="our-story">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -111,37 +102,7 @@ export default function About() {
               </motion.p>
             ))}
 
-            <section className={styles.principles}>
-              <motion.div
-                className={styles.principlesHeader}
-                variants={fadeIn}
-                custom={3}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-              >
-                <span>How we work</span>
-                <h3>Small team. Clear rules. <em>Public accountability.</em></h3>
-              </motion.div>
-              <div className={styles.principlesGrid}>
-                {principles.map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    className={styles.principleCard}
-                    variants={fadeIn}
-                    custom={i + 4}
-                    initial="hidden"
-                    whileInView="show"
-                    whileHover={{ y: -5 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    <span className={styles.principleLabel}>{item.label}</span>
-                    <h4>{item.title}</h4>
-                    <p>{item.body}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+            <AboutPrinciples />
 
             {/* Team grid */}
             <motion.div
@@ -151,6 +112,7 @@ export default function About() {
               whileInView="show"
               viewport={{ once: true }}
               className={styles.teamIntro}
+              id="our-team"
             >
               <span>Student-led team</span>
               <strong>The people moving it forward.</strong>
@@ -181,6 +143,7 @@ export default function About() {
                           src={photo}
                           alt={member.name}
                           className={photoClassName}
+                          style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale }}
                         />
                       ) : (
                         <div className={styles.teamInitial}>{member.initials}</div>
@@ -189,7 +152,9 @@ export default function About() {
                     <div className={styles.teamInfo}>
                       <div className={styles.teamName}>{member.name}</div>
                       <div className={styles.teamRole}>{roles[member.name] || 'Team Member'}</div>
+                      <span className={styles.profileHint}>View profile ↗</span>
                     </div>
+                    <TeamProfile member={member} photo={photo} role={roles[member.name] || 'Team Member'} />
                   </motion.div>
                 );
               })}

@@ -127,14 +127,13 @@ export default function Transparency() {
             Financial records will be published here as we grow. Check back as Ascend-Ed launches its first programs in 2026.
           </p>
           <div className={styles.bandBtns}>
-            <a
-              href="https://www.zeffy.com/en-US/donation-form/donate-to-ascend"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
               className={`${styles.bandBtnPrimary} cta-glow`}
+              disabled
             >
-              Donate Now
-            </a>
+              Coming Soon
+            </button>
             <button className={styles.bandBtnGhost} onClick={() => navigate('/about')}>
               Meet the team →
             </button>

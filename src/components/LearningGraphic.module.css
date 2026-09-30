@@ -1,0 +1,22 @@
+.graphic { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: center; padding: 1.5rem clamp(1.25rem, 3vw, 2rem); border: 1px solid #16653426; border-radius: 24px 6px 40px 6px; background: radial-gradient(ellipse at 100% 100%, #e4eedc 0, transparent 60%), #fffdf5; box-shadow: 0 20px 55px #071a1212; overflow: hidden; }
+.eyebrow { display: flex; align-items: center; justify-content: center; gap: .7rem; color: var(--brand-green); font-family: var(--sans); font-size: 0.85rem; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+.eyebrow::before { content: ''; display: block; width: 1.6rem; height: 1px; flex: 0 0 1.6rem; background: currentColor; }
+.journey { position: relative; isolation: isolate; width: min(100%, 390px); margin: 1.25rem auto 0; }
+.branch { position: absolute; z-index: -1; top: 0; left: 0; width: 110px; height: 100%; }
+.stem { stroke: #689774; stroke-width: 1.5; }
+.leaf { fill: #c4ddbd80; stroke: #83a980; stroke-width: 1; }
+.seed { fill: var(--gold); }
+.subject { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 1.5rem; align-items: center; min-height: 150px; padding: 1rem 0; }
+.subject:nth-of-type(2) { margin-left: 20px; }
+.icon { display: grid; place-items: center; width: 80px; height: 80px; background: #e8f0e1; color: var(--brand-green); border: 1px solid #16653426; border-radius: 50%; box-shadow: 0 8px 22px #16653412; animation: iconFloat 5s ease-in-out infinite; }
+.subject:nth-of-type(2) .icon { animation-delay: -1.7s; background: #e5f0e9; }
+.test .icon { background: #fcf0cf; color: #b17a0b; border-color: #e8b44f66; animation-delay: -3.3s; }
+.icon svg { display: block; width: 40px; height: 40px; padding: 0; margin: 0; color: inherit; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.copy { position: relative; padding-top: .3rem; }
+.copy h3 { margin: 0 0 .4rem; color: var(--forest); font-family: var(--serif); font-size: 1.607rem; font-weight: 700; line-height: 1.05; }
+.copy p { margin: 0; color: var(--muted); font-family: var(--sans); font-size: 1.05rem; line-height: 1.6; }
+.flourish { position: absolute; z-index: -1; width: 120px; height: 120px; right: -25px; bottom: -20px; stroke: #82a579; stroke-width: 1; opacity: .3; transform-origin: bottom left; animation: leafSway 7s ease-in-out infinite; }
+@keyframes iconFloat { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-5px) rotate(2deg); } }
+@keyframes leafSway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@media (max-width: 480px) { .graphic { padding: 1.25rem; }.subject { grid-template-columns: 64px minmax(0, 1fr); gap: 1rem; }.icon { width: 64px; height: 64px; }.branch { left: -8px; }.copy h3 { font-size: 1.5rem; } }
+@media (prefers-reduced-motion: reduce) { .icon, .flourish, .icon svg *, .icon svg { animation: none !important; } }

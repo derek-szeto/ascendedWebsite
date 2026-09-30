@@ -1,0 +1,49 @@
+.page {
+  min-height: 100dvh;
+  padding: calc(var(--nav-height) + clamp(2rem, 5vw, 5rem)) clamp(1.25rem, 5vw, 5rem) clamp(3rem, 7vw, 6rem);
+  background: radial-gradient(circle at 82% 12%, rgba(92, 203, 138, .14), transparent 32rem), var(--paper-warm);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  max-width: 1440px;
+  min-height: min(680px, calc(100dvh - var(--nav-height) - 8rem));
+  margin: 0 auto;
+}
+
+.copy { max-width: 620px; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: var(--brand-green);
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.copy h1 {
+  margin: 1.5rem 0 1.4rem;
+  color: var(--forest);
+  font-family: var(--serif);
+  font-size: clamp(3.8rem, 7vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: .98;
+}
+.copy h1 em { color: var(--brand-green); font-family: var(--accent-font); font-style: italic !important; font-weight: 600; }
+.copy p { max-width: 34rem; color: #586d5f; font-size: clamp(1.1rem, 1.5vw, 1.25rem); line-height: 1.75; }
+.note { display: block; margin-top: 2rem; color: #9a6f17; font-size: .9rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+
+.visual { position: relative; min-width: 0; overflow: hidden; border: 1px solid rgba(22, 101, 52, .17); border-radius: 22px 5px; background: var(--forest); box-shadow: 0 28px 72px rgba(7, 26, 18, .16); }
+.visual img { display: block; width: 100%; aspect-ratio: 1.2; object-fit: cover; opacity: .72; }
+.visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 42%, rgba(7, 26, 18, .48)); pointer-events: none; }
+.visual span { position: absolute; z-index: 1; right: 1.5rem; bottom: 1.5rem; color: var(--gold); font-size: .9rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+
+@media (max-width: 760px) {
+  .content { grid-template-columns: 1fr; min-height: 0; }
+  .visual img { aspect-ratio: 1.45; }
+}

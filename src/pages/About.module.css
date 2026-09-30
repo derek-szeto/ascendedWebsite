@@ -11,7 +11,7 @@
 }
 
 .pageLabel {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--brand-green);
@@ -21,14 +21,6 @@
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-}
-
-.pageLabel::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--brand-green);
-  opacity: 0.55;
 }
 
 .title {
@@ -42,7 +34,7 @@
 }
 
 .para {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--charcoal);
   line-height: 1.9;
   margin-bottom: 1rem;
@@ -71,21 +63,13 @@
 
 .principlesHeader span {
   color: var(--brand-green);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-}
-
-.principlesHeader span::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--brand-green);
-  opacity: 0.55;
 }
 
 .principlesHeader h3 {
@@ -146,7 +130,7 @@
 .principleLabel {
   display: block;
   color: var(--brand-green);
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   margin-bottom: 1rem;
@@ -164,7 +148,7 @@
 
 .principleCard p {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   line-height: 1.75;
 }
 
@@ -181,7 +165,7 @@
 }
 
 .teamIntro span {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 600;
@@ -190,14 +174,6 @@
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-}
-
-.teamIntro span::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--brand-green);
-  opacity: 0.55;
 }
 
 .teamIntro strong {
@@ -211,7 +187,7 @@
 
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -221,7 +197,7 @@
   border-radius: 4px;
   padding: 0.85rem;
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 84px minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
   min-height: 132px;
@@ -264,8 +240,8 @@
 }
 
 .teamPhotoWrap {
-  width: 100px;
-  height: 112px;
+  width: 84px;
+  height: 100px;
   border-radius: 2px;
   overflow: hidden;
   background: var(--sage-pale);
@@ -300,15 +276,17 @@
 
 .teamName {
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--ink);
+  color: #102f20;
   line-height: 1.15;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .teamRole {
-  font-size: 0.72rem;
+  font-size: .85rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -385,7 +363,7 @@
 .teamGrid { gap: 0.9rem; }
 
 .teamCard {
-  min-height: 154px;
+  min-height: 144px;
   padding: 1rem;
   border-color: rgba(22,101,52,0.14);
   border-radius: 18px 5px 18px 5px;
@@ -407,3 +385,7 @@
   .teamGrid { grid-template-columns: 1fr; }
   .teamCard:last-child:nth-child(odd) { grid-column: auto; max-width: none; }
 }
+
+.profileHint { display: inline-block; margin-top: .75rem; color: var(--brand-green); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
+
+@media (min-width: 721px) and (max-width: 1000px) { .teamGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

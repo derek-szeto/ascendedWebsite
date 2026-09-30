@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PageTrail from './PageTrail';
 import styles from './EditorialHero.module.css';
 
 export default function EditorialHero({ chapter, eyebrow, title, description, items, variant }) {
@@ -28,6 +29,7 @@ export default function EditorialHero({ chapter, eyebrow, title, description, it
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.65, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
         >
+          {variant === 'community' ? <PageTrail items={items} /> : <>
           <span className={styles.mapLabel}>Explore this page</span>
           <div className={styles.mapList}>
             {items.map((item, i) => {
@@ -48,6 +50,7 @@ export default function EditorialHero({ chapter, eyebrow, title, description, it
               );
             })}
           </div>
+          </>}
         </motion.div>
       </div>
       <div className={styles.goldSweep} aria-hidden />

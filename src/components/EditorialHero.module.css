@@ -37,7 +37,7 @@
   gap: 0.85rem;
   margin-bottom: 1.6rem;
   color: var(--gold);
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   letter-spacing: 0.17em;
   text-transform: uppercase;
 }
@@ -52,7 +52,8 @@
   font-weight: 800;
 }
 
-.chapter strong { font-weight: 800; }
+.chapter strong { display: inline-flex; align-items: center; gap: .75rem; font-weight: 800; }
+.chapter strong::before { content: ''; display: block; width: 1.6rem; height: 1px; flex: 0 0 1.6rem; background: currentColor; }
 
 .copy h1 {
   max-width: 760px;
@@ -83,7 +84,7 @@
 .copy > p {
   max-width: 570px;
   color: rgba(255,255,255,0.5);
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.75;
 }
 
@@ -102,7 +103,7 @@
 .mapLabel {
   display: block;
   color: rgba(255,255,255,0.52);
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.17em;
   text-transform: uppercase;
@@ -130,7 +131,7 @@
 .mapItem > span { color: var(--gold); font-family: var(--serif); font-size: 1rem; }
 .mapItem div { display: flex; flex-direction: column; gap: 0.3rem; }
 .mapItem strong { color: #fff; font-family: var(--serif); font-size: 1.65rem; font-weight: 600; line-height: 1; }
-.mapItem small { color: rgba(255,255,255,0.48); font-size: 0.73rem; line-height: 1.45; }
+.mapItem small { color: rgba(255,255,255,0.48); font-size: 0.95rem; line-height: 1.6; }
 .mapItem > i {
   width: 2.4rem;
   height: 1px;
@@ -198,7 +199,7 @@
 /* Embedded Community Classes hero */
 .community {
   padding-top: 0;
-  min-height: min(780px, 86vh);
+  min-height: 0;
   background: var(--forest);
 }
 
@@ -222,7 +223,7 @@
   bottom: -7rem;
   border: 1px solid rgba(92,203,138,0.16);
   background: rgba(92,203,138,0.035);
-  border-radius: 58% 42% 65% 35% / 38% 62% 40% 60%;
+  border-radius: 50%;
   pointer-events: none;
   animation: communityBlobMorph 11s ease-in-out infinite;
 }
@@ -318,18 +319,18 @@
   pointer-events: none;
 }
 .community .mapInner { width: min(100%, 570px); }
-.community .mapLabel { font-size: .76rem; letter-spacing: .19em; }
+.community .mapLabel { font-size: 0.88rem; letter-spacing: .19em; }
 .community .mapItem { min-height: 132px; grid-template-columns: 3.5rem 1fr; gap: 1.2rem; }
 .community .mapItem > span { font-size: 1.14rem; }
 .community .mapItem strong { font-size: 1.95rem; }
-.community .mapItem small { margin-top: .08rem; font-size: .86rem; line-height: 1.5; }
+.community .mapItem small { margin-top: .08rem; font-size: 0.96rem; line-height: 1.6; }
 
 .community .mapItem { cursor: pointer; }
 .community .mapItem:hover { background: rgba(255,255,255,0.07); }
 
 @keyframes communityBlobMorph {
-  0%, 100% { transform: rotate(0deg) scale(1); border-radius: 58% 42% 65% 35% / 38% 62% 40% 60%; }
-  50% { transform: rotate(9deg) scale(1.08); border-radius: 37% 63% 38% 62% / 62% 36% 64% 38%; }
+  0%, 100% { transform: rotate(0deg) scale(1); border-radius: 50%; }
+  50% { transform: rotate(9deg) scale(1.08); border-radius: 50%; }
 }
 
 @keyframes communitySeamGlow {
@@ -375,3 +376,18 @@
   .community .techHud::after,
   .community .mapInner::before { animation: none; }
 }
+
+/* Open navigation trail for Community Classes. */
+.community .mapInner::before { content: none; }
+.community .mapPanel { padding-top: 3.5rem; padding-bottom: 4rem; }
+
+@media (min-width: 901px) {
+  .community .copy, .community .mapPanel { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+  .community .copy { justify-content: flex-start; }
+  .community .mapPanel { align-items: flex-start; padding-left: clamp(4.5rem, 7vw, 8rem); padding-right: clamp(2rem, 4vw, 5rem); }
+  .community .mapInner { width: 100%; max-width: 640px; }
+}
+.community .copy { min-height: 0; }
+.community .copy::after { height: 18rem; }
+
+.community .copy > p { max-width: 600px; font-size: clamp(1.08rem, 1.2vw, 1.2rem); line-height: 1.8; color: rgba(255,255,255,.7); }

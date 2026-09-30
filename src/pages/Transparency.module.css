@@ -31,7 +31,7 @@
 }
 
 .eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 600;
@@ -40,15 +40,6 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-}
-
-.eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 1px;
-  background: var(--gold);
-  flex-shrink: 0;
 }
 
 .heroTitle {
@@ -67,7 +58,7 @@
 }
 
 .heroSub {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: rgba(255,255,255,0.45);
   line-height: 1.75;
   max-width: 520px;
@@ -173,7 +164,7 @@
 }
 
 .processEyebrow {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 600;
@@ -216,7 +207,7 @@
 }
 
 .stepDesc {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: rgba(255,255,255,0.4);
   line-height: 1.8;
   max-width: 540px;
@@ -273,7 +264,7 @@
 .bandBtnPrimary {
   display: inline-block;
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: 0.94rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;

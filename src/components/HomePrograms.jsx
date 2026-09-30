@@ -21,7 +21,8 @@ const programs = [
   {
     icon: 'store',
     title: 'Merch & Online Store',
-    desc: 'Ascend-Ed Merch designed to spread the mission and raise money for education access.',
+    desc: 'Ascend-Ed merch designed to spread the mission and raise money for education access.',
+    badge: 'Coming soon',
     tone: 'white',
     action: 'store',
   },
@@ -42,14 +43,11 @@ export default function HomePrograms() {
 
   const scrollToSection = (id) => {
     navigate(`/#${id}`);
-    window.setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 60);
   };
 
   const openProgram = (action) => {
     if (action === 'classes') scrollToSection('classes');
-    else if (action === 'events') scrollToSection('donate');
+    else if (action === 'events') scrollToSection('fundraise');
     else if (action === 'store') navigate('/store');
   };
 
@@ -59,8 +57,8 @@ export default function HomePrograms() {
         <div className={styles.modelIntro}>
           <motion.header className={styles.header} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <span>Three Programs. One Mission</span>
-          <h2>How we’re expanding <em>access to education</em></h2>
-          <p>Each program is built to be useful on its own and stronger together. The goal is to make support easy to join, easy to understand, and easy to trust. We show how the mission becomes action.</p>
+          <h2>How we’re expanding access to education</h2>
+          <p>Each program is built to be useful on its own and stronger together. The goal is to make support easy to join, easy to understand, and easy to trust. We show how the mission becomes action. Interact with a program to explore its content.</p>
         </motion.header>
         </div>
 
@@ -72,23 +70,33 @@ export default function HomePrograms() {
               role="button"
               tabIndex={0}
               onClick={() => openProgram(program.action)}
-              onKeyDown={(event) => (event.key === 'Enter' || event.key === ' ') && openProgram(program.action)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  openProgram(program.action);
+                }
+              }}
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -4 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
             >
-              <div className={styles.programLead}><span className={styles.icon}><ProgramIcon type={program.icon}/></span></div>
-              <div className={styles.programCopy}><h3>{program.title}</h3><p>{program.desc}</p></div>
-              <div className={styles.programAction}><b aria-hidden>&rarr;</b></div>
+              <div className={styles.programLead}><span className={`${styles.icon} ${styles[`${program.icon}Icon`]}`}><ProgramIcon type={program.icon}/></span></div>
+              <div className={styles.programCopy}>
+                <div className={styles.programHeading}>
+                  <h3>{program.title}</h3>
+                  {program.action === 'store' && <span className={styles.comingSoon}>{program.badge}</span>}
+                </div>
+                <p>{program.desc}</p>
+              </div>
             </motion.article>
           ))}
         </div>
 
         <motion.div className={styles.cta} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div><span>Want to help us Grow?</span><h2>Programs get stronger when <em>more people show up.</em></h2></div>
-          <button onClick={() => scrollToSection('get-involved')}>Get involved <span aria-hidden>&rarr;</span></button>
+          <button onClick={() => scrollToSection('get-involved')}>Get involved</button>
         </motion.div>
       </div>
     </section>

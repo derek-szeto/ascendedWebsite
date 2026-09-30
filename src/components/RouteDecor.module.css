@@ -65,12 +65,12 @@
   0%,100% {
     translate: 0 0;
     rotate: -5deg;
-    border-radius: 58% 42% 64% 36% / 38% 62% 40% 60%;
+    border-radius: 50%;
   }
   50% {
     translate: .55rem -.75rem;
     rotate: 7deg;
-    border-radius: 36% 64% 39% 61% / 63% 37% 65% 35%;
+    border-radius: 50%;
   }
 }
 

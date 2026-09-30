@@ -1,5 +1,7 @@
+import LearningGraphic from '../components/LearningGraphic';
+import { DONATE_URL, INSTAGRAM_URL } from '../data/siteLinks';
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import Marquee from '../components/Marquee';
 import TypewriterText from '../components/TypewriterText';
@@ -8,7 +10,6 @@ import HomeAbout from '../components/HomeAbout';
 import CommunityClasses from './CommunityClasses';
 import styles from './Home.module.css';
 
-const GOOGLE_FORM_URL = 'https://forms.gle/mpEKmmc7Ao15dMo39';
 
 /*
 const heroStats = [
@@ -30,14 +31,14 @@ const issueStats = [
 const classSubjects = [
   { label: 'Math', icon: 'math', summary: 'Confidence, foundations, and problem solving' },
   { label: 'Computer Science', icon: 'code', summary: 'Coding fundamentals and creative projects' },
-  { label: 'Test Prep', icon: 'test', summary: 'SAT/ACT prep open to eighth graders and high school students' },
+  { label: 'Test Prep', icon: 'test', summary: 'SAT/ACT prep recommended for eighth graders and high school students' },
 ];
 
 const classFaqs = [
-  { question: 'Who are the classes for?', answer: 'Our community classes support K–8 students with math, computer science, and foundational practice. Test Prep is also open to high school students preparing for the SAT or ACT.' },
-  { question: 'Can high school students register?', answer: 'Yes. High school students are welcome to register for SAT/ACT Test Prep, including strategy, pacing, math review, reading comprehension, grammar, and guided practice.' },
+  { question: 'What do I need to bring?', answer: 'Bring basic school supplies like pencils or pens, an eraser, and a notebook or paper. If you have a school-issued device, you can bring it, especially for Computer Science. We can provide computers for students to use during class, so bringing your own device is optional.' },
+  { question: 'Who are the classes for?', answer: 'Our community classes support K–12 students in math and computer science. SAT/ACT Test Prep is recommended for eighth graders and high school students.' },
   { question: 'How much do classes cost?', answer: 'Classes are free. Ascend-Ed is focused on making academic support easier for families to reach.' },
-  { question: 'Where do sessions take place?', answer: 'Our current class sites are National India Hub at 930 National Pkwy in Schaumburg and Kenneth Young Center at 650 E. Algonquin Rd., Suite 104, in Schaumburg.' },
+  { question: 'Where do sessions take place?', answer: 'Our current class sites are National India Hub at 930 National Pkwy in Schaumburg, Kenneth Young Center at 650 E. Algonquin Rd., Suite 104, in Schaumburg, and Alive Center in Hanover Park. Alive Center is not currently enrolling.' },
   { question: 'When will I receive the schedule?', answer: 'Session dates and times are shared through registration as they are confirmed, so completing the intake form is the best way to receive updates.' },
 ];
 
@@ -140,57 +141,17 @@ export default function Home() {
             <span className={styles.communityEyebrow}>Our programs · Community Classes</span>
             <h1>
               <span className={styles.communityTitleLine}>Free tutoring</span>
-              <span className={styles.communityTitleLine}>for <em>K–8</em></span>
+              <span className={styles.communityTitleLine}>for <em>K–12</em></span>
               <span className={styles.communityTitleLine}><em>students.</em></span>
             </h1>
             <p>A welcoming place to learn, ask questions, and build confidence—led by student volunteers and made easier for families to reach.</p>
             <div className={styles.heroActions}>
-              <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className={`${styles.heroEnroll} cta-glow`}>Register for classes <span aria-hidden>&rarr;</span></a>
-              <button className={styles.heroDetails} onClick={() => navigate('/programs/community-classes')}>See Community Classes</button>
+              <Link to="/#register" className={`${styles.heroEnroll} cta-glow`}>Register for classes <span aria-hidden>&rarr;</span></Link>
+              <button className={styles.heroDetails} onClick={() => navigate('/#classes')}>See Community Classes</button>
             </div>
           </motion.div>
 
-          <motion.div className={styles.posterPanel} initial={{ opacity: 0, x: 24, rotate: 1 }} animate={{ opacity: 1, x: 0, rotate: 0 }} transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
-            <div className={styles.posterTopline}>
-              <span>What we cover</span>
-  
-            </div>
-            <div className={styles.posterSubjects}>
-              {classSubjects.map((subject, i) => (
-                <motion.div
-                  key={subject.label}
-                  className={subject.icon === 'test' ? styles.posterSubjectTest : undefined}
-                  initial={reduceMotion ? false : { opacity: 0, x: 42, scale: 0.97 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  whileHover={reduceMotion ? undefined : { x: 7, scale: 1.012 }}
-                  transition={{ delay: 0.42 + i * 0.14, duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className={styles.posterSubjectNum}>0{i + 1}</span>
-                  <motion.span
-                    className={styles.subjectIconMotion}
-                    animate={reduceMotion ? undefined : {
-                      y: [0, -7, 0],
-                      rotate: [0, i === 1 ? 4 : -4, 0],
-                      scale: [1, 1.04, 1],
-                    }}
-                    transition={{
-                      duration: 3.1 + i * 0.35,
-                      delay: 1 + i * 0.2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  >
-                    <SubjectIcon type={subject.icon} />
-                  </motion.span>
-                  <span className={styles.posterSubjectCopy}>
-                    <strong>{subject.label}</strong>
-                    <small>{subject.summary}</small>
-                    {subject.icon === 'test' && <b className={styles.posterAudience}>High school students welcome</b>}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <LearningGraphic subjects={classSubjects} Icon={SubjectIcon} />
         </div>
         <div className={styles.communityHeroCut} aria-hidden />
       </section>
@@ -216,9 +177,9 @@ export default function Home() {
             Ascend-Ed is a student-led initiative helping to close Illinois' education gap through community classes, student-led fundraising, and support for under-resourced communities.
           </p>
           <div className={styles.missionBridgeActions}>
-            <button className="cta-glow" onClick={() => navigate('/#donate')}>
+            <Link className={`${styles.donateLink} cta-glow`} to="/#donate">
               Donate Now <span aria-hidden>&rarr;</span>
-            </button>
+            </Link>
             <a href="#issue">Learn the Issue</a>
           </div>
         </motion.div>
@@ -291,9 +252,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className={styles.btnGroup}
           >
-            <button className={`${styles.btnPrimary} cta-glow`} onClick={() => navigate('/#donate')}>
-              Donate Now <span className={styles.btnArrow} aria-hidden>&rarr;</span>
-            </button>
+            <Link className={`${styles.btnPrimary} cta-glow`} to="/#donate">
+              Donate Now
+            </Link>
             <button className={styles.btnGhost} onClick={() => navigate('/#issue')}>
               Learn the Issue
             </button>
@@ -356,7 +317,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <button className={`${styles.classBtn} cta-glow`} onClick={() => navigate('/registration')}>
+            <button className={`${styles.classBtn} cta-glow`} onClick={() => navigate('/#register')}>
               Register <span aria-hidden>&rarr;</span>
             </button>
           </motion.div>
@@ -382,7 +343,6 @@ export default function Home() {
             <span>Community class FAQ</span>
             <h2>What <em>families</em><b>should know.</b></h2>
             <p>Quick answers about eligibility, cost, location, and scheduling.</p>
-            <div className={styles.faqSignal} aria-hidden><i /><i /><i /></div>
           </motion.div>
           <div className={styles.homeFaqList}>
             {classFaqs.map((item, i) => (
@@ -480,16 +440,6 @@ export default function Home() {
           >
             That isn&apos;t just a Chicago problem. That&apos;s an Illinois problem. And it&apos;s one we&apos;re working to close.
           </motion.p>
-          <motion.button
-            className={styles.manifestoBtn}
-            onClick={() => navigate('/#issue')}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            
-          </motion.button>
         </div>
         <svg className={styles.manifestoShape} viewBox="0 0 200 200" fill="none" aria-hidden>
           <circle cx="100" cy="100" r="98" stroke="rgba(232,180,79,0.12)" strokeWidth="1" />
@@ -553,9 +503,6 @@ export default function Home() {
 
       {/* ── GET INVOLVED SECTION ── */}
       <section className={styles.getInvolvedSection} id="get-involved">
-        <div className={styles.involvedTechVisuals} aria-hidden>
-          <i /><i /><i /><i />
-        </div>
         <div className={styles.getInvolvedInner}>
           <motion.div
             className={styles.getInvolvedHeader}
@@ -572,50 +519,32 @@ export default function Home() {
               viewport={{ once: true, amount: .7 }}
               variants={{ hidden: {}, show: { transition: { staggerChildren: .16, delayChildren: .08 } } }}
             >
-              <motion.span className={styles.involvedWhite} variants={{ hidden: { opacity: 0, y: 24, filter: 'blur(7px)' }, show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: .58, ease: [0.22, 1, 0.36, 1] } } }}>This is&nbsp;</motion.span>
-              <motion.span className={styles.involvedGold} variants={{ hidden: { opacity: 0, y: 24, filter: 'blur(7px)' }, show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: .62, ease: [0.22, 1, 0.36, 1] } } }}>your state,</motion.span>{' '}
-              <motion.em className={styles.involvedLime} variants={{ hidden: { opacity: 0, scale: .78, rotate: -4, filter: 'blur(7px)' }, show: { opacity: 1, scale: 1, rotate: 0, filter: 'blur(0px)', transition: { type: 'spring', stiffness: 190, damping: 16 } } }}>too.</motion.em>
+              <motion.span className={styles.involvedWhite} variants={{ hidden: { opacity: 0, y: 24, filter: 'blur(7px)' }, show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: .58, ease: [0.22, 1, 0.36, 1] } } }}>This is</motion.span>{' '}
+              <motion.span className={styles.involvedAccentLine} variants={{ hidden: { opacity: 0, y: 24, filter: 'blur(7px)' }, show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: .62, ease: [0.22, 1, 0.36, 1] } } }}>
+                <span className={styles.involvedGold}>your state,</span>{' '}<em className={styles.involvedLime}>too.</em>
+              </motion.span>
             </motion.h2>
             <p className={styles.getInvolvedSub}>You do not have to be a student to care about this. Whether you can teach, fundraise, donate, or share the mission, there is a way to help.</p>
           </motion.div>
+        </div>
+      </section>
 
-          <motion.div
-            className={styles.donateSection}
-            id="donate"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className={styles.donateContent}>
-              <span className={styles.donateEyebrow}>Most direct way to help</span>
-              <h3 className={styles.donateTitle}>The funding gap is real. Change starts <em>here.</em></h3>
-              <p className={styles.donateSub}>Help Ascend-Ed fund education access in Illinois. Your donation supports trusted education groups in Illinois. We track what comes in and post where it goes.</p>
-              <div className={styles.ethicsCommitments} aria-label="Our funding commitments">
-                {['No overhead', 'Every dollar tracked', 'Public breakdowns'].map((commitment, i) => (
-                  <motion.div
-                    key={commitment}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.42, delay: i * 0.08 }}
-                  >
-                    <span aria-hidden />
-                    <strong>{commitment}</strong>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            <a
-              href="https://www.zeffy.com/en-US/donation-form/donate-to-ascend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.donateBtn} cta-glow`}
-            >
-              Donate Now <span aria-hidden>&rarr;</span>
-            </a>
-          </motion.div>
+      <section className={styles.donateSection} id="donate" aria-labelledby="donate-title">
+        <div className={styles.donateContent}>
+          <span className={styles.donateEyebrow}>Most direct way to help</span>
+          <h3 className={styles.donateTitle} id="donate-title">
+            <span>The funding gap is real.</span>
+            <span>Change starts <em>here.</em></span>
+          </h3>
+          <p className={styles.donateSub}>Your donation supports trusted education groups in Illinois. We track every contribution and post where it goes.</p>
+          <div className={styles.donateAction}>
+            <a href={DONATE_URL} target="_blank" rel="noopener noreferrer" className={styles.donateBtn}>Donate Now</a>
+          </div>
+        </div>
+      </section>
 
+      <section className={styles.getInvolvedMore} id="more-ways-to-help">
+        <div className={styles.getInvolvedInner}>
           <div className={styles.waysSection}>
             <motion.div
               className={styles.waysHeader}
@@ -629,11 +558,12 @@ export default function Home() {
 
             {[
               { icon: 'teach', title: 'Teach', tag: 'Volunteer', body: 'Lead a free tutoring session at one of our class-site grounds. We need help in math, computer science, and SAT/ACT prep.' },
-              { icon: 'fundraise', title: 'Fundraise', tag: 'Help Us Grow', body: 'If you have event ideas, connections, or time to help coordinate, reach out. Every event is student-led.' },
-              { icon: 'spread', title: 'Share', tag: 'Amplify', body: 'Post about it. Talk about it. Send this link to someone who should know.' },
+              { id: 'fundraise', icon: 'fundraise', title: 'Fundraise', tag: 'Help Us Grow', body: 'If you have event ideas, connections, or time to help coordinate, reach out. Every event is student-led.' },
+              { icon: 'spread', title: 'Share', tag: 'Amplify', body: 'Post about it. Talk about it. Send this link to someone who should know.', href: INSTAGRAM_URL },
             ].map((w, i) => (
               <motion.div
                 key={w.title}
+                id={w.id}
                 className={styles.wayRow}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -647,6 +577,7 @@ export default function Home() {
                   </div>
                   <div className={styles.wayTitle}>{w.title}</div>
                   <p className={styles.wayDesc}>{w.body}</p>
+                  {w.href && <a className={styles.wayLink} href={w.href} target="_blank" rel="noopener noreferrer">Visit our Instagram</a>}
                 </div>
               </motion.div>
             ))}
@@ -707,17 +638,13 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.25 }}
           >
-            <a
-              href="https://www.zeffy.com/en-US/donation-form/donate-to-ascend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.ctaBtnPrimary} cta-glow`}
-            >
+            <Link to="/#donate" className={`${styles.ctaBtnPrimary} cta-glow`}>
               Donate Now
-            </a>
+            </Link>
             <button className={styles.ctaBtnSecondary} onClick={() => navigate('/#get-involved')}>
               Get Involved
             </button>
+            <Link to="/store" className={styles.ctaBtnSecondary}>Shop the Store</Link>
           </motion.div>
         </div>
       </section>

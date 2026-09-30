@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -97,6 +98,7 @@ function ProductCard({ product, onAdd }) {
 }
 
 export default function Store() {
+  const navigate = useNavigate();
   useTabTitle('Store | Ascend-Ed');
   const checkoutLock = useRef(false);
   const [cart, setCart] = useState(() => {
@@ -242,7 +244,7 @@ export default function Store() {
           <div className={styles.welcomeNote}>
             <span aria-hidden>✦</span>
             <p>Student-designed essentials that turn everyday style into support for education access.</p>
-            <button type="button" onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}>Explore the collection <span aria-hidden>→</span></button>
+            <button type="button" onClick={() => navigate('/store#collection')}>Explore the collection <span aria-hidden>→</span></button>
           </div>
         </div>
         <div className={styles.welcomeBottom} aria-hidden="true" />
@@ -264,7 +266,7 @@ export default function Store() {
             <BagIcon /><span className={styles.cartButtonCopy}><small>Your cart</small><strong>{itemCount ? `${itemCount} item${itemCount === 1 ? '' : 's'}` : 'Start shopping'}</strong></span><b>{itemCount}</b>
           </button>
         </motion.header>
-        <motion.div className={styles.shopIntro} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, delay: .08 }}><p>Designed to start conversations and widen access to education. Small-batch, mission-first apparel created by students.</p><div><span>Designed in Illinois</span><span>Purpose in every piece</span></div></motion.div>
+        <motion.div className={styles.shopIntro} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, delay: .08 }}><p>Designed to start conversations and widen access to education. Small-batch, mission-first apparel created by students.</p></motion.div>
         <div className={styles.productGrid}>{PRODUCTS.map((product) => <ProductCard key={product.id} product={product} onAdd={addToCart} />)}</div>
 
         <motion.div className={styles.impactBand} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><div><strong>Style with a purpose.</strong><p>Store proceeds go back into Ascend-Ed programs serving students across Illinois.</p></div><b>Education elevates everyone.</b></motion.div>

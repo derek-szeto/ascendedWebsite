@@ -16,7 +16,7 @@
 }
 
 .eyebrow {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 600;
@@ -27,13 +27,6 @@
   gap: 0.5rem;
 }
 
-.eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 1px;
-  background: var(--gold);
-}
 
 .title {
   font-family: var(--serif);
@@ -46,7 +39,7 @@
 }
 
 .meta {
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.3);
   letter-spacing: 0.04em;
 }
@@ -80,7 +73,7 @@
 }
 
 .sectionBody {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--muted);
   line-height: 1.8;
 }

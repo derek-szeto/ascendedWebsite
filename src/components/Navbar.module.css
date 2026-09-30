@@ -56,7 +56,7 @@
 }
 
 .logoSup {
-  font-size: 0.55rem;
+  font-size: 0.85rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--sage);
@@ -119,7 +119,7 @@
 
 .soonBadge {
   display: inline-block;
-  font-size: 0.55rem;
+  font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 700;
@@ -174,7 +174,7 @@
 .drawerBtn {
   display: block;
   padding: 0.7rem 1rem;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;

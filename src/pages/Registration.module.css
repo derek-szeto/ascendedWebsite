@@ -32,7 +32,7 @@
 
 .eyebrow,
 .sectionEyebrow {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 800;
@@ -44,17 +44,6 @@
 .eyebrow {
   color: var(--gold);
   margin-bottom: 1.5rem;
-}
-
-.eyebrow::before,
-.sectionEyebrow::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-}
-
-.eyebrow::before {
-  background: var(--gold);
 }
 
 .heroTitle {
@@ -75,7 +64,7 @@
 }
 
 .heroSub {
-  font-size: 1.08rem;
+  font-size: 1.18rem;
   color: rgba(255,255,255,0.48);
   line-height: 1.75;
   max-width: 560px;
@@ -97,7 +86,7 @@
   border-radius: 2px;
   padding: 1rem 2.1rem;
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: 0.94rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -160,11 +149,6 @@
 
 .sectionEyebrow {
   color: var(--muted);
-}
-
-.sectionEyebrow::before {
-  background: var(--brand-green);
-  opacity: 0.45;
 }
 
 .sectionHeader h2 {
@@ -268,7 +252,7 @@
 .infoCard p,
 .siteRow p {
   color: var(--muted);
-  font-size: 0.94rem;
+  font-size: 1.05rem;
   line-height: 1.75;
   max-width: 560px;
 }
@@ -314,7 +298,7 @@
 
 .siteLabel {
   color: var(--brand-green);
-  font-size: 0.68rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;

@@ -31,13 +31,16 @@
 }
 
 .eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 600;
   margin-bottom: 0.85rem;
 }
+.eyebrow { display: inline-flex; align-items: center; gap: .7rem; }
+.eyebrow::before { content: ''; display: block; width: 1.6rem; height: 1px; flex: 0 0 1.6rem; background: currentColor; }
+
 
 .title {
   font-family: var(--serif);
@@ -54,7 +57,7 @@
 }
 
 .body {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: rgba(255,255,255,0.45);
   line-height: 1.9;
   display: flex;
@@ -86,7 +89,7 @@
 
 .calloutKicker {
   display: block;
-  font-size: 0.66rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -211,7 +214,7 @@
 .pqText span::after { content: none; }
 
 .pqSource {
-  font-size: 0.75rem;
+  font-size: 0.87rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 700;

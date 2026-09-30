@@ -28,7 +28,7 @@
 }
 
 .tagline {
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.28);
   letter-spacing: 0.02em;
 }
@@ -39,7 +39,7 @@
 }
 
 .link {
-  font-size: 0.75rem;
+  font-size: 0.87rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 600;
@@ -60,7 +60,7 @@
 }
 
 .email {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--gold);
   text-decoration: none;
   transition: opacity 0.2s;
@@ -69,7 +69,7 @@
 .email:hover { opacity: 0.75; }
 
 .copy {
-  font-size: 0.72rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.2);
 }
 
@@ -84,14 +84,14 @@
 }
 
 .bottomLeft {
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.18);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .bottomLink {
-  font-size: 0.7rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.28);
   text-decoration: none;
   letter-spacing: 0.06em;
@@ -151,7 +151,7 @@
 .left { gap: .7rem; }
 .kicker, .columnLabel {
   color: var(--gold);
-  font-size: .66rem;
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: .18em;
   text-transform: uppercase;
@@ -168,7 +168,7 @@
 .tagline {
   max-width: 260px;
   color: rgba(255,255,255,.52);
-  font-size: .92rem;
+  font-size: 1.02rem;
   line-height: 1.7;
 }
 
@@ -186,7 +186,6 @@
   background: rgba(255,255,255,.025);
   transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease;
 }
-.link small { color: var(--gold); font-family: var(--serif); font-size: .78rem; letter-spacing: 0; }
 .link:hover { color: #fff; border-color: rgba(92,203,138,.28); background: rgba(92,203,138,.07); transform: translateX(4px); }
 
 .right { align-items: flex-start; gap: .8rem; }
@@ -200,7 +199,7 @@
 .email::after { content: '↗'; display: inline-block; margin-left: .45rem; color: var(--gold); transition: transform .25s ease; }
 .email:hover { opacity: 1; }
 .email:hover::after { transform: translate(3px,-3px); }
-.contactNote { max-width: 290px; color: rgba(255,255,255,.42); font-size: .82rem; line-height: 1.65; }
+.contactNote { max-width: 290px; color: rgba(255,255,255,.42); font-size: 0.95rem; line-height: 1.65; }
 
 .bottomBar {
   position: relative;

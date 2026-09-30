@@ -1,3 +1,4 @@
+import CurriculumExplorer from '../components/CurriculumExplorer';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -26,7 +27,7 @@ const subjects = [
     ['Abstraction', 'Break larger problems into reusable functions and manageable pieces.'],
     ['Projects & Debugging', 'Build small programs, test ideas, and learn how to fix errors.'],
   ] },
-  { type: 'test', title: 'Test Prep', short: 'Open to high school students', body: 'SAT/ACT strategy, pacing, focused practice, and review for eighth graders and high school students preparing for major assessments.', audience: 'Eighth graders and high school students are welcome', materials: [
+  { type: 'test', title: 'Test Prep', short: 'Recommended for eighth graders and high school students', body: 'SAT/ACT strategy, pacing, focused practice, and review for students preparing for these exams.', materials: [
     ['Math Review', 'Revisit high-impact concepts and practice choosing efficient methods.'],
     ['Reading Comprehension', 'Find evidence, identify main ideas, and understand passage structure.'],
     ['Grammar & Writing', 'Practice sentence structure, punctuation, clarity, and revision.'],
@@ -51,22 +52,10 @@ const tutors = [
   },
 ];
 
-function SubjectIcon({ type }) {
-  const props = { className: `${styles.subjectIcon} ${styles[`${type}Icon`]}`, viewBox: '0 0 24 24', fill: 'none', xmlns: 'http://www.w3.org/2000/svg', 'aria-hidden': true };
-
-  if (type === 'code') {
-    return <svg {...props}><path d="M4 5.5h16v10.2H4V5.5Z" /><path d="M9 19h6M12 15.7V19" /><path d="m9.2 9.2-2 2 2 2m5.6-4 2 2-2 2m-1.9-4.5-1.8 5" /></svg>;
-  }
-  if (type === 'test') {
-    return <svg {...props}><path d="M7 4.8h10c.9 0 1.6.7 1.6 1.6v12.3c0 .9-.7 1.6-1.6 1.6H7c-.9 0-1.6-.7-1.6-1.6V6.4c0-.9.7-1.6 1.6-1.6Z" /><path d="M9.2 3.7h5.6v2.6H9.2V3.7ZM8.7 10.4h6.6M8.7 14h6.6M8.7 17.4h3.8" /></svg>;
-  }
-  return <svg {...props}><g className={styles.mathPlus}><path d="M7 4.5v6M4 7.5h6" /></g><g className={styles.mathMinus}><path d="M14 7.5h6" /></g><g className={styles.mathMultiply}><path d="m4.9 14.2 4.2 4.2m0-4.2-4.2 4.2" /></g><g className={styles.mathDivide}><path d="M14 16.3h6" /><circle cx="17" cy="13.5" r=".65" fill="currentColor" stroke="none" /><circle cx="17" cy="19.1" r=".65" fill="currentColor" stroke="none" /></g></svg>;
-}
-
 export default function CommunityClasses() {
   const reduceMotion = useReducedMotion();
   const [selectedTutor, setSelectedTutor] = useState(null);
-  const [activeSubject, setActiveSubject] = useState(0);
+
 
   useEffect(() => {
     if (!selectedTutor) return undefined;
@@ -85,8 +74,8 @@ export default function CommunityClasses() {
       <EditorialHero
         variant="community"
         eyebrow="Community Classes"
-        title={<>Free tutoring built around <em>useful practice.</em></>}
-        description="A welcoming place for K–8 students to learn, ask questions, and build confidence with guidance from qualified student tutors."
+        title={<>Free tutoring built around useful practice.</>}
+        description="A welcoming place for K–12 students to learn, ask questions, and build confidence with guidance from qualified student tutors."
         items={[
           { label: 'Sites', detail: 'Location and registration', href: '#class-sites' },
           { label: 'Class Details', detail: 'Subjects and learning approach', href: '#class-details' },
@@ -105,8 +94,8 @@ export default function CommunityClasses() {
             viewport={{ once: true }}
           >
             <span>Sites &amp; scheduling</span>
-            <h2>Start with a place that feels <em>easy to reach.</em></h2>
-            <p>See the current class location, then tell us what subject support and session details would work best for your student.</p>
+            <h2>Start with a place that feels easy to reach.</h2>
+            <p>See the current class sites, then tell us what subject support and session details would work best for your student.</p>
           </motion.header>
           <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className={styles.locationLead}>
@@ -117,21 +106,30 @@ export default function CommunityClasses() {
             <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
           </motion.div>
 
-          <motion.div className={`${styles.locationCard} ${styles.comingSoon}`} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
+          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className={styles.locationLead}>
+              <span className={styles.eyebrow}>Current class site</span>
+              <h2>Alive Center</h2>
+              <p>1211 Catalina Drive<br />Hanover Park<br />Every other Thursday, 4–5 PM</p>
+            </div>
+            <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
+          </motion.div>
+
+          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
             <div className={`${styles.locationLead} ${styles.locationLeadWithLogo}`}>
               <img src={nationalIndiaHubLogo} alt="National India Hub" className={styles.siteLogo} />
               <div>
                 <h2>National India Hub</h2>
-                <p>930 National Pkwy<br />Schaumburg, Illinois<br />Weekly Tuesdays, 5–6 PM</p>
+                <p>930 National Pkwy<br />Schaumburg, Illinois<br />Weekly Wednesdays, 5–6 PM</p>
               </div>
             </div>
-            <div className={styles.locationStatus}><i /> Coming soon</div>
+            <div className={styles.locationStatus}><i /> Enrolling now</div>
           </motion.div>
 
           <motion.div className={styles.registerCard} id="register" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.20 }}>
-            <div><span className={styles.eyebrow}>National India Hub applications</span><h2>Tell us what support would help.</h2></div>
-            <p>Applications are currently available only for the upcoming National India Hub classes, held weekly on Tuesdays from 5–6 PM.</p>
-            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className={`${styles.registerBtn} cta-glow`}>Apply for India Hub <span aria-hidden>&rarr;</span></a>
+            <div><span className={styles.eyebrow}>National IndiaHub registration</span><h2>Tell us what support would help.</h2></div>
+            <p>Registration is currently available only for National India Hub classes, held weekly on Wednesdays from 5–6 PM.</p>
+            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer" className={`${styles.registerBtn} cta-glow`}>Register for India Hub</a>
           </motion.div>
         </div>
       </section>
@@ -139,49 +137,25 @@ export default function CommunityClasses() {
 
       <section className={styles.subjects} id="class-details">
         <div className={styles.sectionInner}>
-          <div className={styles.sectionHeader}><span>What we cover</span><h2>Three subjects. Clear explanations. Room to <em>ask questions.</em></h2></div>
-          <motion.p className={styles.materialPrompt} initial={reduceMotion ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            Our student tutors take advanced coursework and bring strong subject knowledge to every session. They know how to break challenging ideas into clear, approachable steps and give students space to work at their own pace. Choose a subject below to explore what they can help with.
-          </motion.p>
-          <div className={styles.subjectGrid} role="tablist" aria-label="Class subjects">
-            {subjects.map((subject, i) => (
-              <motion.article className={`${styles[`subjectCard${i + 1}`]} ${activeSubject === i ? styles.subjectCardActive : ''}`} key={subject.title} role="tab" tabIndex={activeSubject === i ? 0 : -1} aria-selected={activeSubject === i} aria-controls="subject-materials" onClick={() => setActiveSubject(i)} onKeyDown={(event) => (event.key === 'Enter' || event.key === ' ') && setActiveSubject(i)} initial={reduceMotion ? false : { opacity: 0, y: 28, rotate: i === 1 ? 1 : -1 }} whileInView={{ opacity: 1, y: 0, rotate: 0 }} whileHover={reduceMotion ? undefined : { y: -7, scale: 1.012 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55 }}>
-                <div className={styles.iconTile}><SubjectIcon type={subject.type} /></div>
-                <h3>{subject.title}</h3>
-                <strong>{subject.short}</strong>
-                <p>{subject.body}</p>
-              </motion.article>
-            ))}
-          </div>
-          <div className={styles.materialBrowser} id="subject-materials" role="tabpanel" aria-live="polite">
-            <div className={styles.materialBrowserHeader}>
-              <motion.div className={styles.materialBrowserIcon} key={subjects[activeSubject].type} initial={reduceMotion ? false : { scale: .72, rotate: -8, opacity: 0 }} animate={{ scale: 1, rotate: 0, opacity: 1 }}><SubjectIcon type={subjects[activeSubject].type} /></motion.div>
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div className={styles.materialBrowserCopy} key={subjects[activeSubject].title} initial={reduceMotion ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -12 }} transition={{ duration: reduceMotion ? 0 : .38 }}>
-                  <span>Explore the curriculum</span>
-                  <h3><em>{subjects[activeSubject].title}</em><span>Material</span></h3>
-                  <p>Browse the concepts students can work through with their tutor, then choose the support that fits.</p>
-                  {subjects[activeSubject].audience && <strong className={styles.materialAudience}><i aria-hidden />{subjects[activeSubject].audience}</strong>}
-                </motion.div>
-              </AnimatePresence>
-              <div className={styles.materialBrowserHint}>
-                <span>Interested in strengthening your knowledge in these topics at National India Hub?</span>
-                <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">Apply for India Hub <i aria-hidden>→</i></a>
-              </div>
-            </div>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div className={styles.materialList} key={subjects[activeSubject].title} initial={reduceMotion ? false : { opacity: 0, x: 32, clipPath: 'inset(0 0 0 18%)' }} animate={{ opacity: 1, x: 0, clipPath: 'inset(0 0 0 0%)' }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: -22, clipPath: 'inset(0 18% 0 0)' }} transition={{ duration: reduceMotion ? 0 : .42, ease: [0.22, 1, 0.36, 1] }}>
-                {subjects[activeSubject].materials.map(([title, detail], index) => (
-                  <motion.div className={styles.materialRow} key={title} initial={reduceMotion ? false : { opacity: 0, x: 24, scale: .985 }} animate={{ opacity: 1, x: 0, scale: 1 }} whileHover={reduceMotion ? undefined : { x: 7 }} transition={{ delay: reduceMotion ? 0 : .08 + index * .065, duration: .36, ease: [0.22, 1, 0.36, 1] }}>
-                    <strong>{title}</strong><p>{detail}</p><i aria-hidden>→</i>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          <div className={styles.sectionHeader}><span>What we cover</span><h2>Math, Computer Science, & SAT/ACT Prep</h2></div>
+          <CurriculumExplorer subjects={subjects} applicationUrl={GOOGLE_FORM_URL} />
         </div>
       </section>
 
+
+      <section className={styles.bring} id="what-to-bring" aria-labelledby="what-to-bring-title">
+        <div className={`${styles.sectionInner} ${styles.bringInner}`}>
+          <div className={styles.sectionHeader}>
+            <span>Before your first class</span>
+            <h2 id="what-to-bring-title">What do I need <em>to bring?</em></h2>
+          </div>
+          <ul className={styles.bringList}>
+            <li><h3>The everyday basics</h3><p>Bring pencils or pens, an eraser, and a notebook or some paper.</p></li>
+            <li><h3>A device, if you have one</h3><p>You’re welcome to bring your school-issued device, especially for Computer Science sessions.</p></li>
+            <li><h3>No computer? We’ve got you.</h3><p>We can provide computers for students to use during class. Bringing your own device is optional.</p></li>
+          </ul>
+        </div>
+      </section>
 
       <section className={styles.tutors} id="meet-tutors">
         <div className={styles.sectionInner}>
@@ -189,7 +163,7 @@ export default function CommunityClasses() {
             <motion.div className={styles.tutorIntroCopy} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className={styles.sectionHeader}>
                 <span>Meet your tutors</span>
-                <h2><strong>Learning feels easier</strong><b>with someone</b><em>in your corner.</em></h2>
+                <h2><strong>Learning feels easier</strong><b>with someone</b><em>in your side.</em></h2>
               </div>
               <p>Ved and Rishabh are academically strong student tutors with experience in advanced math, computer science, and SAT/ACT concepts. They bring both subject knowledge and patience to each session, helping students learn from peers who understand the material and know how to explain it clearly.</p>
               <div className={styles.tutorCredibility} aria-label="Tutor strengths">

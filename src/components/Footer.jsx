@@ -1,16 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import { navigationLinks } from '../data/navigation';
 import styles from './Footer.module.css';
-
-const links = [
-  { to: '/', label: 'Home' },
-  { to: '/#about', label: 'About Us' },
-  { to: '/#programs', label: 'Programs' },
-  { to: '/#classes', label: 'Classes' },
-  { to: '/#faq', label: 'FAQ' },
-  { to: '/#issue', label: 'Issue' },
-  { to: '/#get-involved', label: 'Get Involved' },
-  { to: '/store', label: 'Store' },
-];
 
 export default function Footer() {
   return (
@@ -25,10 +15,8 @@ export default function Footer() {
         <div className={styles.navigation}>
           <span className={styles.columnLabel}>Explore</span>
           <nav className={styles.nav} aria-label="Footer navigation">
-            {links.map(({ to, label, external }, index) => (
-              external
-                ? <a key={to} href={to} className={styles.link}><small>0{index + 1}</small>{label}</a>
-                : <NavLink key={to} to={to} className={styles.link}><small>0{index + 1}</small>{label}</NavLink>
+            {navigationLinks.map(({ to, label }) => (
+              <NavLink key={to} to={to} className={styles.link}>{label}</NavLink>
             ))}
           </nav>
         </div>

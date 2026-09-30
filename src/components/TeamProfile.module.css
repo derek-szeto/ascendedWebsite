@@ -1,0 +1,38 @@
+.trigger { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; cursor: pointer; }
+.trigger:focus-visible { outline: 3px solid var(--brand-green); outline-offset: -4px; }
+.dialog { position: fixed; inset: 0; margin: auto; overflow: hidden; width: min(740px, calc(100% - 2rem)); height: min(520px, calc(100dvh - 2rem)); max-height: calc(100dvh - 2rem); padding: 0; border: 1px solid rgba(22,101,52,.18); border-radius: 22px; background: #fafbf6; color: var(--ink); box-shadow: 0 24px 80px #071a1233; }
+.dialog::backdrop { background: #071a1299; backdrop-filter: blur(5px); }
+.content { position: relative; display: grid; height: 100%; min-height: 0; grid-template-columns: 36% minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+.close { position: absolute; z-index: 1; top: .75rem; right: .75rem; width: 36px; height: 36px; border: 1px solid #16653426; border-radius: 50%; background: #fafbf6; color: var(--ink); font-size: 1.5rem; cursor: pointer; }
+.close:focus-visible { outline: 3px solid var(--brand-green); outline-offset: 3px; }
+.photo { width: 100%; height: 100%; min-width: 0; min-height: 0;  object-fit: cover; object-position: center 18%; }
+.initials { display: grid; place-items: center; background: #dceadd; font-family: var(--serif); font-size: 4rem; }
+.details { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 3.5rem 2.2rem 2.2rem; overflow-wrap: anywhere; }
+.eyebrow { color: var(--brand-green); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; }
+.details h2 { margin: .75rem 0; font-family: var(--serif); font-size: 2.2rem; font-weight: 500; line-height: 1.1; }
+.role { color: var(--brand-green); font-size: 0.95rem; line-height: 1.6; }
+.bio { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #16653426; color: #68796e; font-size: 1rem; line-height: 1.7; white-space: pre-line; }
+@media (max-width: 540px) { .dialog { height: min(680px, calc(100dvh - 2rem)); }.content { grid-template-columns: 1fr; grid-template-rows: min(220px, 32dvh) minmax(0, 1fr); }.photo, .initials { min-height: 0; height: 100%; }.details { padding: 1.5rem; } }
+
+.dialog[open] { animation: profileEnter 420ms cubic-bezier(.16,1,.3,1) both; }
+.dialog[open]::backdrop { animation: backdropEnter 320ms ease both; }
+.dialog.closing { animation: profileExit 180ms ease-in both; }
+.dialog.closing::backdrop { animation: backdropExit 180ms ease-in both; }
+.details { animation: detailsEnter 480ms cubic-bezier(.16,1,.3,1) both; }
+.infoSection { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #16653420; }
+.infoSection h3 { margin: 0 0 .8rem; color: var(--ink); font-family: var(--serif); font-size: 1.6rem; font-weight: 600; line-height: 1.15; letter-spacing: -.015em; }
+.qualifications { margin: 0; padding-left: 1.25rem; color: #52665a; font-size: 1.05rem; line-height: 1.65; }
+.qualifications li + li { margin-top: .45rem; }
+.qualifications li::marker { color: var(--brand-green); }
+.placeholder { margin: 0; color: #68796e; font-size: 1.05rem; line-height: 1.6; }
+.contactLinks { display: grid; gap: .6rem; }
+.contactLinks a { display: flex; flex-direction: column; gap: .2rem; padding: .8rem .95rem; border: 1px solid #16653426; border-radius: 10px; color: var(--brand-green); background: #edf2e680; text-decoration: none; font-size: 1.05rem; overflow-wrap: anywhere; transition: background .2s, border-color .2s; }
+.contactLinks a span:first-child { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.contactLinks a:hover { background: #e2eddd; border-color: var(--brand-green); }
+.contactLinks a:focus-visible { outline: 2px solid var(--brand-green); outline-offset: 3px; }
+@keyframes profileEnter { from { opacity: 0; transform: translateY(22px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes profileExit { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(10px) scale(.97); } }
+@keyframes backdropEnter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes backdropExit { from { opacity: 1; } to { opacity: 0; } }
+@keyframes detailsEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .dialog[open], .dialog.closing, .dialog[open]::backdrop, .dialog.closing::backdrop, .details { animation-duration: 1ms; }.contactLinks a { transition: none; } }

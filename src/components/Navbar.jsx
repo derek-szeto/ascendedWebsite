@@ -2,18 +2,8 @@ import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import logo from '../assets/ascend-ed-logo-simplified.png';
+import { navigationLinks } from '../data/navigation';
 import styles from './Navbar.module.css';
-
-const links = [
-  { to: '/', label: 'Home', section: 'home' },
-  { to: '/#about', label: 'About Us', section: 'about' },
-  { to: '/#programs', label: 'Programs', section: 'programs' },
-  { to: '/#classes', label: 'Classes', section: 'classes' },
-  { to: '/#faq', label: 'FAQ', section: 'faq' },
-  { to: '/#issue', label: 'Issue', section: 'issue' },
-  { to: '/#get-involved', label: 'Get Involved', section: 'get-involved' },
-  { to: '/store', label: 'Store' },
-];
 
 export default function Navbar() {
   const location = useLocation();
@@ -25,14 +15,7 @@ export default function Navbar() {
     setMenuOpen(false);
     if (to === '/') {
       setActiveSection('home');
-      window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }), 30);
-      return;
     }
-    if (to?.includes('#')) return;
-
-    window.setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }, 90);
   };
 
   useEffect(() => {
@@ -48,10 +31,14 @@ export default function Navbar() {
 
     const updateActiveSection = () => {
       const marker = window.innerHeight * 0.38;
-      const visibleSection = ['about', 'programs', 'classes', 'issue', 'get-involved', 'faq'].find((id) => {
+      const visibleSection = ['about', 'programs', 'classes', 'faq', 'issue', 'get-involved'].find((id) => {
         const element = document.getElementById(id);
         if (!element) return false;
         const rect = element.getBoundingClientRect();
+        if (id === 'get-involved') {
+          const moreWays = document.getElementById('more-ways-to-help');
+          return rect.top <= marker && (moreWays?.getBoundingClientRect().bottom ?? rect.bottom) > marker;
+        }
         return rect.top <= marker && rect.bottom > marker;
       });
       setActiveSection(visibleSection || 'home');
@@ -73,14 +60,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <nav aria-label="Primary navigation" className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <NavLink to="/" className={styles.logo} onClick={() => handleNavClick('/')}>
         <img src={logo} alt="Ascend-Ed" className={styles.logoImg} />
       </NavLink>
 
       {/* Desktop links */}
       <ul className={styles.links}>
-        {links.map((link) => (
+        {navigationLinks.map((link) => (
           <li key={link.to}>
             {link.external ? (
               <a href={link.to} target="_blank" rel="noopener noreferrer" className={styles.navBtn} onClick={() => setMenuOpen(false)}>
@@ -121,7 +108,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
-            {links.map((link, i) => (
+            {navigationLinks.map((link, i) => (
               <motion.div
                 key={link.to}
                 initial={{ opacity: 0, x: -10 }}

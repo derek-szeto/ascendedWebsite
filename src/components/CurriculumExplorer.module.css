@@ -1,0 +1,34 @@
+.explorer { margin-top: 2rem; font-family: var(--sans); }
+.intro { max-width: 720px; margin: 0 0 3rem; color: #617469; font-size: 1.05rem; line-height: 1.85; }
+.tabs { display: flex; flex-wrap: wrap; column-gap: clamp(1.5rem, 5vw, 4rem); border-bottom: 1px solid #16653426; }
+.tabs button { position: relative; display: flex; align-items: center; gap: .7rem; padding: 1rem 0 1.3rem; border: 0; background: transparent; color: #68796e; font-family: var(--sans); font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 500; cursor: pointer; transition: color .2s; }
+.tabs button::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 3px; border-radius: 100% 40% 0 0; background: var(--brand-green); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.tabs button[aria-selected='true'] { color: var(--forest); }
+.tabs button[aria-selected='true']::after { transform: scaleX(1); }
+.tabs button:hover { color: var(--brand-green); }
+.tabIcon { display: inline-flex; flex: 0 0 25px; align-items: center; justify-content: center; }
+.tabIcon svg { display: block; flex-shrink: 0; width: 25px; height: 25px; padding: 0; color: currentColor; animation: none; }
+.tabIcon svg g, .tabIcon svg path { animation: none; }
+.panel { padding: clamp(2.5rem, 5vw, 4.5rem) 0; }
+.layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(3rem, 8vw, 8rem); align-items: start; }
+.kicker { color: var(--brand-green); font-size: 0.87rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.overview h3 { margin: 1rem 0 1.5rem; color: var(--forest); font-family: var(--serif); font-size: clamp(2.678rem, 5vw, 4.285rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.02; }
+.overview > p { max-width: 36ch; color: #617469; font-size: 1.15rem; line-height: 1.85; }
+.overview .audience { margin-top: 1rem; color: var(--brand-green); font-size: .9rem; }
+.note { display: flex; gap: 1rem; align-items: flex-start; margin-top: 3rem; }
+.noteMark { display: block; flex: 0 0 28px; width: 28px; height: 28px; color: #b78b2d; }
+.note p { max-width: 30ch; color: #617469; font-size: 1.05rem; line-height: 1.8; }
+.topics h4 { font-family: var(--sans) !important; margin: 0 0 .5rem; color: #617469; font-size: .75rem; letter-spacing: .12em; font-weight: 700; text-transform: uppercase; }
+.topics ul { list-style: none; padding: 0; margin: 0; }
+.topics li { padding: 1.5rem 0; border-bottom: 1px solid #1665341c; }
+.topics li:last-child { border-bottom: 0; padding-bottom: 0; }
+.topics h5 { margin: 0 0 .6rem; font-family: var(--serif); font-size: 1.6rem; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.topics p { max-width: 52ch; color: #617469; font-size: 1.06rem; line-height: 1.75; }
+.apply { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-top: 2rem; border-top: 1px solid #16653426; }
+.apply h4 { margin: 0 0 .8rem; font-family: var(--serif); font-size: clamp(2rem, 3.6vw, 3.15rem); color: var(--forest); font-weight: 600; line-height: 1.05; }
+.apply p { color: #617469; font-family: var(--sans); font-size: 1.18rem; line-height: 1.78; }
+.apply a { flex-shrink: 0; display: inline-block; padding: 1rem 1.5rem; border-radius: 6px; background: var(--brand-green); color: white; font-family: var(--sans); font-size: 0.92rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background-color .25s; }
+.apply a:hover { background: var(--forest); }
+.tabs button:focus-visible, .panel:focus-visible, .apply a:focus-visible { outline: 2px solid var(--brand-green); outline-offset: 6px; }
+@media (max-width: 700px) { .intro { margin-bottom: 1.5rem; }.tabs { column-gap: 1.25rem; }.tabs button { font-size: 1.15rem; gap: .4rem; }.tabIcon svg { width: 20px; height: 20px; }.layout { grid-template-columns: 1fr; gap: 2.5rem; }.overview > p { max-width: 55ch; }.note { margin-top: 1.5rem; }.apply { align-items: flex-start; flex-direction: column; gap: 1.25rem; } }
+@media (prefers-reduced-motion: reduce) { .tabs button, .tabs button::after, .apply a { transition: none; } }
