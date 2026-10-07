@@ -233,11 +233,6 @@
 }
 
 /* Center the lone last card when it's by itself in the row */
-.teamCard:last-child:nth-child(odd) {
-  grid-column: 1 / -1;
-  max-width: calc(50% - 0.5rem);
-  justify-self: center;
-}
 
 .teamPhotoWrap {
   width: 84px;
@@ -314,11 +309,6 @@
     padding: 1.35rem;
   }
   .teamGrid { grid-template-columns: 1fr; }
-  .teamCard:last-child:nth-child(odd) {
-    grid-column: auto;
-    max-width: 100%;
-    justify-self: auto;
-  }
 }
 
 /* Editorial refresh */
@@ -383,9 +373,13 @@
   .principles { margin-left: -1rem; margin-right: -1rem; padding: 2rem 1rem; }
   .principlesGrid { grid-template-columns: 1fr; }
   .teamGrid { grid-template-columns: 1fr; }
-  .teamCard:last-child:nth-child(odd) { grid-column: auto; max-width: none; }
 }
 
 .profileHint { display: inline-block; margin-top: .75rem; color: var(--brand-green); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
 
 @media (min-width: 721px) and (max-width: 1000px) { .teamGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+
+.newMembers { margin-top: .9rem; }
+
+

@@ -13,6 +13,8 @@ const roles = {
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
   'Dhruv Dayeneni': 'Tutor & Incoming Director',
+  'Martin Choi': 'Tutor',
+  'Avanish Rajesh': 'Marketing Director',
 };
 
 const photoOverrides = {
@@ -45,20 +47,22 @@ export default function HomeAbout() {
           <span>Student-led team</span>
           <h3>The people moving it forward.</h3>
         </div>
-        <div className={styles.team}>
-          {teamMembers.map((member, index) => {
+        {[teamMembers.slice(0, 6), teamMembers.slice(6)].map((members, groupIndex) => (
+        <div key={groupIndex} className={`${styles.team} ${groupIndex === 1 ? styles.newMembers : ''}`}>
+          {members.map((member, index) => {
             const photo = photoOverrides[member.name] || member.img;
             return (
               <motion.article key={member.name} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}>
                 <div className={styles.photo}>
                   {photo ? <img src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale }} /> : <span>{member.initials}</span>}
                 </div>
-                <div><h4>{member.name === 'Derek Szeto' ? <>Derek<br />Szeto</> : member.name}</h4><p>{roles[member.name] || 'Team Member'}</p><span className={styles.profileHint}>View profile ↗</span></div>
+                <div><h4>{member.name === 'Derek Szeto' ? <>Derek<br />Szeto</> : member.name === 'Martin Choi' ? <>Martin<br />Choi</> : member.name}</h4><p>{roles[member.name] || 'Team Member'}</p><span className={styles.profileHint}>View profile ↗</span></div>
                 <TeamProfile member={member} photo={photo} role={roles[member.name] || 'Team Member'} />
               </motion.article>
             );
           })}
         </div>
+        ))}
       </div>
     </section>
   );

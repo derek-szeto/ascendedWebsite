@@ -10,7 +10,7 @@ import useTabTitle from './hooks/useTabTitle';
 import Home from './pages/Home';
 import About from './pages/About';
 import Privacy from './pages/Privacy';
-import StoreComingSoon from './pages/StoreComingSoon';
+import Store from './pages/Store';
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -31,9 +31,9 @@ function ScrollToLocation({ location }) {
   useLayoutEffect(() => {
     const samePage = previousPath.current === pathname;
     previousPath.current = pathname;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!hash) {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({
         top: 0,
         left: 0,
@@ -42,8 +42,11 @@ function ScrollToLocation({ location }) {
       return undefined;
     }
 
+    // A new route has just mounted. Start from its top, then travel to the section.
+    if (!samePage) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
     let attempts = 0;
-    let timer;
+    let frame;
     let cancelled = false;
 
     const scrollToHash = () => {
@@ -54,22 +57,22 @@ function ScrollToLocation({ location }) {
       const target = document.getElementById(id);
       if (target) {
         const navbar = document.querySelector('nav[aria-label="Primary navigation"]');
-        const offset = (navbar?.getBoundingClientRect().height || 72) + 16;
-        const behavior = samePage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant';
-        window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset), behavior });
+        const offset = (navbar?.getBoundingClientRect().height || 72) + 32;
+        window.scrollTo({
+          top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset),
+          behavior: reduceMotion ? 'instant' : 'smooth',
+        });
         return;
       }
 
       attempts += 1;
-      if (attempts < 30) {
-        timer = window.setTimeout(scrollToHash, 80);
-      }
+      if (attempts < 120) frame = window.requestAnimationFrame(scrollToHash);
     };
 
-    timer = window.setTimeout(scrollToHash, 80);
+    frame = window.requestAnimationFrame(scrollToHash);
     return () => {
       cancelled = true;
-      window.clearTimeout(timer);
+      window.cancelAnimationFrame(frame);
     };
   }, [pathname, hash, key]);
 
@@ -97,11 +100,12 @@ function AnimatedRoutes() {
           <Route path="/programs" element={<Navigate to="/#programs" replace />} />
           <Route path="/programs/community-classes" element={<Navigate to="/#classes" replace />} />
           <Route path="/registration" element={<Navigate to="/#register" replace />} />
-          <Route path="/store" element={<StoreComingSoon />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/get-involved" element={<Navigate to="/#get-involved" replace />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/about" element={<About />} />
         </Routes>
+        <ScrollToLocation location={location} />
       </motion.div>
     </AnimatePresence>
   );
@@ -109,7 +113,6 @@ function AnimatedRoutes() {
 
 function AppLayout() {
   useTabTitle('Come back — Ascend-Ed 🌿');
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -130,7 +133,6 @@ function AppLayout() {
       <ScrollProgress />
       <Navbar />
       <AnimatedRoutes />
-      <ScrollToLocation location={location} />
       <Footer />
       <BackToTop />
     </>

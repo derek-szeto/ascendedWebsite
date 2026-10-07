@@ -49,3 +49,10 @@
 @media (max-width: 650px) { .story { padding: 0 0 4rem; margin-bottom: 0; } .story h2 { font-size: clamp(3rem,14vw,4.35rem); } .storyCopy { padding-left: 0; } .story h2 .titleAccent { padding-left: .75rem; } .story header::after { width: 10rem; height: 10rem; right: -3rem; } }
 
 .profileHint { display: inline-block; margin-top: 1.15rem; color: var(--brand-green); font-size: .8rem; font-weight: 700; letter-spacing: .04em; }
+
+
+.newMembers { grid-template-columns: repeat(2, minmax(0, 1fr)); width: calc(100% / 3 - .533333rem); margin: .8rem auto 0; }
+@media (max-width: 900px) { .newMembers { width: calc(200% / 3 - .266667rem); } }
+@media (max-width: 650px) { .newMembers { width: 100%; grid-template-columns: 1fr; } }
+
+

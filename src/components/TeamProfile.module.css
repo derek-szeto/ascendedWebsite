@@ -36,3 +36,5 @@
 @keyframes backdropExit { from { opacity: 1; } to { opacity: 0; } }
 @keyframes detailsEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .dialog[open], .dialog.closing, .dialog[open]::backdrop, .dialog.closing::backdrop, .details { animation-duration: 1ms; }.contactLinks a { transition: none; } }
+
+.photoWrap { min-width: 0; min-height: 0; overflow: hidden; }

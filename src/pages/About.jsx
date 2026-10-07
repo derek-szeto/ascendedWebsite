@@ -21,6 +21,8 @@ const roles = {
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
   'Dhruv Dayeneni': 'Tutor & Incoming Director',
+  'Martin Choi': 'Tutor',
+  'Avanish Rajesh': 'Marketing Director',
 };
 
 const photoOverrides = {
@@ -117,8 +119,9 @@ export default function About() {
               <span>Student-led team</span>
               <strong>The people moving it forward.</strong>
             </motion.div>
-            <div className={styles.teamGrid}>
-              {teamMembers.map((member, i) => {
+            {[teamMembers.slice(0, 6), teamMembers.slice(6)].map((members, groupIndex) => (
+        <div key={groupIndex} className={`${styles.teamGrid} ${groupIndex === 1 ? styles.newMembers : ''}`}>
+              {members.map((member, i) => {
                 const photo = photoOverrides[member.name] || member.img;
                 const photoClassName = `${styles.teamPhoto} ${
                   member.name === 'Rishabh Dalal' ? styles.rishabhPhoto : ''
@@ -150,6 +153,7 @@ export default function About() {
                       )}
                     </div>
                     <div className={styles.teamInfo}>
+                      
                       <div className={styles.teamName}>{member.name}</div>
                       <div className={styles.teamRole}>{roles[member.name] || 'Team Member'}</div>
                       <span className={styles.profileHint}>View profile ↗</span>
@@ -159,6 +163,7 @@ export default function About() {
                 );
               })}
             </div>
+            ))}
         </div>
       </div>
     </div>

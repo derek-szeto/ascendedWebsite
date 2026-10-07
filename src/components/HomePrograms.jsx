@@ -22,7 +22,6 @@ const programs = [
     icon: 'store',
     title: 'Merch & Online Store',
     desc: 'Ascend-Ed merch designed to spread the mission and raise money for education access.',
-    badge: 'Coming soon',
     tone: 'white',
     action: 'store',
   },
@@ -86,7 +85,6 @@ export default function HomePrograms() {
               <div className={styles.programCopy}>
                 <div className={styles.programHeading}>
                   <h3>{program.title}</h3>
-                  {program.action === 'store' && <span className={styles.comingSoon}>{program.badge}</span>}
                 </div>
                 <p>{program.desc}</p>
               </div>

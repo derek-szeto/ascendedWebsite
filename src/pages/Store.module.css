@@ -3,7 +3,6 @@
 .welcome { max-width: 1760px; margin: 0 auto; min-height: clamp(24rem,36vw,34rem); padding: 1.2rem clamp(1.2rem,5vw,5rem) 1.5rem; background: radial-gradient(circle at 82% 14%,rgba(92,203,138,.13),transparent 27%),linear-gradient(125deg,#071a12 0%,#0b2d20 55%,#124c32 100%); color: #f5f3e8; position: relative; overflow: hidden; isolation: isolate; }
 .welcome::before { content: ''; position: absolute; z-index: -1; right: -7rem; top: -16rem; width: 37rem; aspect-ratio: 1; border: 1px solid rgba(92,203,138,.28); border-radius: 50%; box-shadow: 0 0 0 4rem rgba(92,203,138,.04),0 0 0 8rem rgba(232,180,79,.03); }
 .welcome::after { content: 'ASCEND'; position: absolute; z-index: -1; right: -1.5%; bottom: -2.6rem; color: rgba(245,243,232,.045); font: 600 clamp(8rem,19vw,20rem)/1 var(--serif); letter-spacing: -.08em; white-space: nowrap; }
-.welcomeTop { display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid rgba(245,243,232,.22); color: #a9b9ae; font-size: 0.85rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .welcomeMain { min-height: clamp(18rem,28vw,27rem); display: grid; grid-template-columns: minmax(20rem,1.4fr) minmax(16rem,.55fr); align-items: center; gap: clamp(2rem,7vw,8rem); }
 .welcomeCopy .kicker { color: #e8b44f; }
 .welcomeCopy h1 { color: #f5f3e8; font-size: clamp(3.5rem,6vw,6rem); line-height: 1.05; font-weight: 600; letter-spacing: -.02em; text-shadow: 0 16px 45px rgba(0,0,0,.22); }
@@ -70,8 +69,6 @@
 .price strong { color: #166534; }
 .productBody>p { min-height: 4.8rem; margin: 1rem 0 1.2rem; color: #647169; font-size: 1.05rem; line-height: 1.6; }
 .purchaseRow { display: flex; gap: .7rem; align-items: end; }
-.purchaseRow label { flex: 0 0 5.2rem; color: #53645a; font-size: 0.85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.purchaseRow select { width: 100%; display: block; margin-top: .35rem; padding: .8rem .7rem; border: 1px solid #c6c6b6; background: #f5f3e8; color: #071a12; }
 .purchaseRow button,.checkout form>button { flex: 1; min-height: 2.9rem; border: 0; background: #166534; color: white; padding: .75rem 1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: .55rem; transition: background .2s,transform .2s; }
 .purchaseRow button svg { width: 1.15rem; stroke: currentColor; fill: none; stroke-width: 1.8; }
 .purchaseRow button:hover svg { animation: bagWiggle .55s ease; }
@@ -180,7 +177,7 @@
   letter-spacing: inherit;
 }
 
-.welcomeNote button, .purchaseRow button, .purchaseRow select,
+.welcomeNote button, .purchaseRow button,
 .checkoutButton, .empty button, .confirmation > button,
 .checkout form > button, .checkout input, .checkout select {
   font-family: var(--sans);
@@ -221,3 +218,14 @@
   .floatingCart { right: .8rem; bottom: .8rem; min-width: 8.5rem; }.formRow,.formTriple { grid-template-columns: 1fr; }.checkout { max-height: 100dvh; }.missionMarquee div { animation-duration: 16s; }
 }
 @media (prefers-reduced-motion: reduce) { .missionMarquee div,.floatingCart.hasItems,.cartDrawer.open .cartItem,.cartDrawer.open .shippingMeter>i>span,.modalBackdrop,.checkout,.confirmation,.welcomeNote>span { animation: none; }.productImage,.cartDrawer,.backdrop,.productCard { transition: none; } }
+
+.sizeSelector { min-width: 0; margin: 0 0 1rem; padding: 0; border: 0; }
+.sizeSelector legend { margin-bottom: .65rem; padding: 0; color: #53645a; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.sizeOptions { display: flex; gap: .6rem; }
+.sizeOption { position: relative; flex: 1; cursor: pointer; }
+.sizeOption input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sizeOption span { display: grid; place-items: center; min-height: 46px; border: 1px solid #bcc9bb; border-radius: 8px; background: #faf9f3; color: #244331; font-size: 1rem; font-weight: 700; transition: background .18s, border-color .18s, color .18s; }
+.sizeOption:hover span { border-color: #166534; background: #e7eee2; }
+.sizeOption input:checked + span { border-color: #166534; background: #166534; color: white; box-shadow: inset 0 0 0 1px #166534; }
+.sizeOption input:focus-visible + span { outline: 3px solid #b78322; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .sizeOption span { transition: none; } }

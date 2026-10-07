@@ -529,8 +529,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.donateSection} id="donate" aria-labelledby="donate-title">
-        <div className={styles.donateContent}>
+      <section className={styles.donateSection} aria-labelledby="donate-title">
+        <div className={styles.donateContent} id="donate">
           <span className={styles.donateEyebrow}>Most direct way to help</span>
           <h3 className={styles.donateTitle} id="donate-title">
             <span>The funding gap is real.</span>
@@ -553,7 +553,7 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <span className={styles.waysEyebrow}>More ways to help</span>
-              <h3 className={styles.waysTitle}>Choose the role that <em>fits you.</em></h3>
+              <h3 className={styles.waysTitle}>Choose the role that fits you.</h3>
             </motion.div>
 
             {[

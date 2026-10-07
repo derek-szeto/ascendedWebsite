@@ -1748,11 +1748,16 @@ button.tutorProfileBtn:disabled {
   justify-content: center;
   max-width: 220px;
   min-width: 0;
+  height: 62px;
   min-height: 62px;
-  padding: .9rem 1.25rem;
-  font-size: 1.02rem;
-  line-height: 1.2;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  line-height: 1.1;
   text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .btnGroup > :is(a, button) { font-size: 1.05rem; padding-inline: .5rem; }
 }
 
 @keyframes pulseDonate {
@@ -3415,7 +3420,7 @@ button.tutorProfileBtn:disabled {
 }
 
 .waysEyebrow {
-  color: var(--gold);
+  color: var(--brand-green);
   font-size: 0.87rem;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -3545,7 +3550,7 @@ button.tutorProfileBtn:disabled {
 /* Cream + green, technology-forward Get Involved treatment */
 .getInvolvedSection {
   isolation: isolate;
-  padding: clamp(4.5rem, 5.5vw, 6rem) 2.5rem;
+  padding: clamp(4.5rem, 5.5vw, 6rem) 2.5rem 7rem;
   background:
     linear-gradient(rgba(92,203,138,.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(92,203,138,.025) 1px, transparent 1px),
@@ -3555,7 +3560,7 @@ button.tutorProfileBtn:disabled {
 
 .getInvolvedInner {
   display: block;
-  max-width: 1100px;
+  max-width: 990px;
 }
 
 .getInvolvedMore {
@@ -3568,27 +3573,57 @@ button.tutorProfileBtn:disabled {
 }
 .getInvolvedMore .getInvolvedInner { max-width: 1100px; }
 
-.getInvolvedSection::before { content: none; }
+.getInvolvedSection::before {
+  content: '';
+  position: absolute;
+  right: -7rem;
+  top: 5rem;
+  width: 21rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(92,203,138,.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.getInvolvedSection::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 4rem;
+  background: var(--cream);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  pointer-events: none;
+}
 
 .getInvolvedHeader {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 900px;
-  min-height: 0;
+  max-width: none;
+  min-height: 18rem;
   margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: none;
+  padding: clamp(2.5rem, 4vw, 3.5rem);
+  border: 1px solid rgba(156,214,176,.16);
+  border-radius: 20px;
+  background: linear-gradient(110deg, rgba(5,30,20,.95), rgba(8,42,29,.94));
   box-shadow: none;
   backdrop-filter: none;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .getInvolvedHeader::after {
-  content: none;
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 19rem;
+  aspect-ratio: 1;
+  right: -3rem;
+  top: -9rem;
+  border: 1px solid rgba(92,203,138,.16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem rgba(92,203,138,.025);
+  pointer-events: none;
 }
+.getInvolvedHeader > * { position: relative; z-index: 1; }
 
 .getInvolvedTitle { max-width: 900px; font-size: clamp(3.2rem,4.2vw,5rem); line-height: 1.06; text-wrap: balance; }
 .involvedWhite, .involvedAccentLine { display: inline-block; }
@@ -3668,15 +3703,15 @@ button.tutorProfileBtn:disabled {
 .donateSection {
   position: relative;
   z-index: 1;
-  display: block;
+  display: flow-root;
   width: 100%;
   margin: 0;
-  padding: clamp(4rem, 5vw, 5.5rem) 2.5rem;
+  padding: 0 2.5rem;
   border: 0;
   border-radius: 0;
-  background: linear-gradient(115deg, #061d15, #0a2c20);
+  background: var(--cream);
   box-shadow: none;
-  overflow: hidden;
+  overflow: visible;
 }
 .donateAction::before {
   content: '';
@@ -3701,12 +3736,20 @@ button.tutorProfileBtn:disabled {
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  column-gap: clamp(3rem, 6vw, 7rem);
+  column-gap: clamp(2rem, 4vw, 4rem);
   row-gap: 1rem;
   align-items: start;
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  padding: 0;
+  width: min(990px, 100%);
+  margin: -3.7rem auto 0;
+  padding: clamp(2.5rem, 4vw, 3.5rem);
+  border: 1px solid rgba(232,180,79,.28);
+  border-top: 3px solid var(--gold);
+  border-radius: 20px;
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.016) 0 1px, transparent 1px 34px),
+    linear-gradient(130deg, #09271c, #071c15);
+  box-shadow: 0 22px 55px rgba(7,26,18,.16);
+  overflow: hidden;
 }
 
 .donateTech { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
@@ -3784,7 +3827,7 @@ button.tutorProfileBtn:disabled {
   grid-row: 1 / 4;
   place-items: center;
   align-self: center;
-  width: 300px;
+  width: 270px;
   min-height: 260px;
 }
 
@@ -3823,7 +3866,7 @@ button.tutorProfileBtn:disabled {
 @media (max-width: 900px) {
   .donateContent { grid-template-columns: 1fr; }
   .donateEyebrow, .donateTitle, .donateSub, .donateAction { grid-column: 1; grid-row: auto; }
-  .donateAction { width: min(100%, 400px); min-height: 250px; margin-top: .5rem; }
+  .donateAction { justify-self: center; width: min(100%, 400px); min-height: 220px; margin-top: .5rem; }
 }
 
 .waysSection {
@@ -3851,7 +3894,6 @@ button.tutorProfileBtn:disabled {
 .waysSection > * { position: relative; z-index: 1; }
 
 .waysTitle, .wayTitle { color: var(--ink); }
-.waysTitle em { color: inherit; font-family: var(--accent-font); font-style: italic !important; font-weight: 600; }
 .wayDesc { color: var(--muted); }
 .wayLink { width: fit-content; margin-top: .3rem; color: var(--brand-green); font-size: .95rem; font-weight: 700; text-decoration: underline; text-underline-offset: .25em; }
 .wayLink:hover { color: var(--forest); }
@@ -3940,16 +3982,17 @@ button.tutorProfileBtn:disabled {
 }
 
 @media (max-width: 720px) {
-  .getInvolvedSection { padding: 4rem 1.25rem; }
+  .getInvolvedSection { padding: 3rem 1.25rem 5.5rem; }
   .getInvolvedTitle { font-size: clamp(2.35rem, 8vw, 3.5rem); }
   .involvedAccentLine { white-space: normal; }
   .getInvolvedMore { padding: 4rem 1.25rem 4.5rem; }
-  .getInvolvedHeader { margin: 0; padding: 0; }
+  .getInvolvedHeader { min-height: 0; margin: 0; padding: 2rem 1.5rem; }
   .fitGrid { margin-top: -1.2rem; }
   .fitGrid::before { display: none; }
   .fitCard { min-height: auto; }
-  .donateSection { padding: 4rem 1.25rem; }
-  .donateContent { padding: 0; }
+  .donateSection { padding: 0 1.25rem; }
+  .donateContent { margin-top: -2.5rem; padding: 2rem 1.5rem; }
+  .donateAction::before { width: 18rem; }
   .waysSection { padding: 1.35rem; }
   .wayRow { grid-template-columns: 1fr; padding: 1.25rem; }
   .involvedTechVisuals b:first-of-type { right: -2.5rem; opacity: .2; }

@@ -78,18 +78,24 @@ function ProductCard({ product, onAdd }) {
         </div>}
       </div>
       <div className={styles.productBody}>
-        <span className={styles.eyebrow}>{product.eyebrow}</span>
+
         <div className={styles.productHeading}>
           <h3>{product.name}</h3>
           <div className={styles.price}><strong>{money.format(product.price)}</strong></div>
         </div>
         <p>{product.description}</p>
+        <fieldset className={styles.sizeSelector}>
+          <legend>Available sizes</legend>
+          <div className={styles.sizeOptions}>
+            {product.sizes.map((option) => (
+              <label key={option} className={styles.sizeOption}>
+                <input type="radio" name={`size-${product.id}`} value={option} checked={size === option} onChange={() => setSize(option)} aria-label={`${{ S: 'Small', M: 'Medium', L: 'Large' }[option]} for ${product.name}`} />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
         <div className={styles.purchaseRow}>
-          <label>Size
-            <select value={size} onChange={(event) => setSize(event.target.value)} aria-label={`Size for ${product.name}`}>
-              {product.sizes.map((option) => <option key={option}>{option}</option>) }
-            </select>
-          </label>
           <button className={added ? styles.added : ''} type="button" onClick={addItem}><BagIcon />{added ? 'In your bag' : 'Add to bag'} <span aria-hidden>+</span></button>
         </div>
       </div>
@@ -235,7 +241,7 @@ export default function Store() {
       <div className={styles.announcement} aria-hidden="true" />
 
       <section className={styles.welcome}>
-        <div className={styles.welcomeTop}><span>Ascend-Ed Goods / Drop 001</span><span>Illinois · 2026</span></div>
+
         <div className={styles.welcomeMain}>
           <div className={styles.welcomeCopy}>
             <span className={styles.kicker}>Welcome to the shop</span>
@@ -261,7 +267,7 @@ export default function Store() {
 
       <section className={styles.shop} id="collection" aria-labelledby="shop-title">
         <motion.header className={styles.shopHeader} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .4 }} transition={{ duration: .65 }}>
-          <div><span className={styles.kicker}>Wear the mission / Drop 001</span><h1 id="shop-title">Built to make<br/><em>an impact.</em></h1></div>
+          <div><span className={styles.kicker}>Wear the mission</span><h1 id="shop-title">Built to make<br/><em>an impact.</em></h1></div>
           <button className={styles.cartButton} type="button" onClick={() => setCartOpen(true)} aria-label={`Open cart with ${itemCount} items`}>
             <BagIcon /><span className={styles.cartButtonCopy}><small>Your cart</small><strong>{itemCount ? `${itemCount} item${itemCount === 1 ? '' : 's'}` : 'Start shopping'}</strong></span><b>{itemCount}</b>
           </button>
@@ -280,7 +286,7 @@ export default function Store() {
 
       <div className={`${styles.backdrop} ${cartOpen ? styles.visible : ''}`} onClick={() => setCartOpen(false)} aria-hidden={!cartOpen} />
       <aside className={`${styles.cartDrawer} ${cartOpen ? styles.open : ''}`} aria-hidden={!cartOpen} inert={!cartOpen ? '' : undefined} aria-label="Shopping cart">
-        <header><div><span>Your bag / Drop 001</span><h2>{itemCount ? `${itemCount} item${itemCount === 1 ? '' : 's'} ready` : 'Make an impact'}</h2></div><button type="button" onClick={() => setCartOpen(false)} aria-label="Close cart">×</button></header>
+        <header><div><span>Your bag</span><h2>{itemCount ? `${itemCount} item${itemCount === 1 ? '' : 's'} ready` : 'Make an impact'}</h2></div><button type="button" onClick={() => setCartOpen(false)} aria-label="Close cart">×</button></header>
         <div className={styles.fulfillmentNote}>
           <span aria-hidden="true">✦</span>
           <div><strong>Free local fulfillment</strong><small>Local delivery or pickup will be coordinated after purchase.</small></div>

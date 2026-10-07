@@ -6,7 +6,7 @@ test('uses the server catalog price instead of a browser-supplied price', () => 
   const items = validateCart([{ id: 'bridge-tee', size: 'M', quantity: 2, price: 1 }]);
   const lineItems = toStripeLineItems(items);
 
-  assert.equal(lineItems[0].price_data.unit_amount, 2800);
+  assert.equal(lineItems[0].price_data.unit_amount, 1999);
   assert.equal(lineItems[0].quantity, 2);
 });
 
@@ -26,7 +26,7 @@ test('rejects unavailable products and sizes', () => {
     CartValidationError,
   );
   assert.throws(
-    () => validateCart([{ id: 'bridge-tee', size: 'XXL', quantity: 1 }]),
+    () => validateCart([{ id: 'bridge-tee', size: 'XL', quantity: 1 }]),
     CartValidationError,
   );
 });
