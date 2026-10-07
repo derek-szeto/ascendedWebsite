@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { handler as createCheckout } from './create-checkout-session.js';
-import { handler as getCheckout } from './get-checkout-session.js';
-import { handler as stripeWebhook } from './stripe-webhook.js';
+import { handler as createCheckout } from '../netlify/functions/create-checkout-session.js';
+import { handler as getCheckout } from '../netlify/functions/get-checkout-session.js';
+import { handler as stripeWebhook } from '../netlify/functions/stripe-webhook.js';
 
 test('checkout creation rejects unsupported methods', async () => {
   const response = await createCheckout({ httpMethod: 'GET' });
