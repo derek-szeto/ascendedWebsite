@@ -177,11 +177,12 @@ export default function Home() {
             Ascend-Ed is a student-led initiative helping to close Illinois' education gap through community classes, student-led fundraising, and support for under-resourced communities.
           </p>
           <div className={styles.missionBridgeActions}>
-            <Link className={`${styles.donateLink} cta-glow`} to="/#donate">
+            <a className={`${styles.donateLink} cta-glow`} href={DONATE_URL} target="_blank" rel="noopener noreferrer">
               Donate Now <span aria-hidden>&rarr;</span>
-            </Link>
+            </a>
             <a href="#issue">Learn the Issue</a>
           </div>
+          <p className={styles.donationHint}>On the donation page, enter <strong>Ascend</strong> in the Comment field.</p>
         </motion.div>
         <div className={styles.topDivider} aria-hidden />
         <div
@@ -252,9 +253,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className={styles.btnGroup}
           >
-            <Link className={`${styles.btnPrimary} cta-glow`} to="/#donate">
+            <a className={`${styles.btnPrimary} cta-glow`} href={DONATE_URL} target="_blank" rel="noopener noreferrer">
               Donate Now
-            </Link>
+            </a>
             <button className={styles.btnGhost} onClick={() => navigate('/#issue')}>
               Learn the Issue
             </button>
@@ -539,6 +540,7 @@ export default function Home() {
           <p className={styles.donateSub}>Your donation supports trusted education groups in Illinois. We track every contribution and post where it goes.</p>
           <div className={styles.donateAction}>
             <a href={DONATE_URL} target="_blank" rel="noopener noreferrer" className={styles.donateBtn}>Donate Now</a>
+            <p className={styles.donateInstruction}>On the donation page, enter <strong>Ascend</strong> in the Comment field.</p>
           </div>
         </div>
       </section>
@@ -638,14 +640,15 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.25 }}
           >
-            <Link to="/#donate" className={`${styles.ctaBtnPrimary} cta-glow`}>
+            <a href={DONATE_URL} target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtnPrimary} cta-glow`}>
               Donate Now
-            </Link>
+            </a>
             <button className={styles.ctaBtnSecondary} onClick={() => navigate('/#get-involved')}>
               Get Involved
             </button>
             <Link to="/store" className={styles.ctaBtnSecondary}>Shop the Store</Link>
           </motion.div>
+          <p className={styles.ctaDonationHint}>On the donation page, enter <strong>Ascend</strong> in the Comment field.</p>
         </div>
       </section>
 

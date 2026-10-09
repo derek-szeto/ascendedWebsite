@@ -1,7 +1,7 @@
 import AboutPrinciples from './AboutPrinciples';
 import TeamProfile from './TeamProfile';
 import { motion } from 'framer-motion';
-import { teamMembers } from '../data/teamMembers';
+import { founders, otherMembers } from '../data/teamGroups';
 import derekPhoto from '../assets/dereknew.png';
 import rishabhPhoto from '../assets/betterrishabh.jpg';
 import styles from './HomeAbout.module.css';
@@ -21,6 +21,25 @@ const photoOverrides = {
   'Derek Szeto': derekPhoto,
   'Rishabh Dalal': rishabhPhoto,
 };
+
+function TeamCard({ member, index }) {
+  const photo = photoOverrides[member.name] || member.img;
+  const [firstName, ...lastName] = member.name.split(' ');
+
+  return (
+    <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}>
+      <div className={styles.photo}>
+        {photo ? <img src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale, transformOrigin: member.photoTransformOrigin }} /> : <span>{member.initials}</span>}
+      </div>
+      <div className={styles.cardCopy}>
+        <h5>{firstName}{lastName.length > 0 && <><br />{lastName.join(' ')}</>}</h5>
+        <p>{roles[member.name] || 'Team Member'}</p>
+        <span className={styles.profileHint}>View profile ↗</span>
+      </div>
+      <TeamProfile member={member} photo={photo} role={roles[member.name] || 'Team Member'} />
+    </motion.article>
+  );
+}
 
 export default function HomeAbout() {
   return (
@@ -47,22 +66,18 @@ export default function HomeAbout() {
           <span>Student-led team</span>
           <h3>The people moving it forward.</h3>
         </div>
-        {[teamMembers.slice(0, 6), teamMembers.slice(6)].map((members, groupIndex) => (
-        <div key={groupIndex} className={`${styles.team} ${groupIndex === 1 ? styles.newMembers : ''}`}>
-          {members.map((member, index) => {
-            const photo = photoOverrides[member.name] || member.img;
-            return (
-              <motion.article key={member.name} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}>
-                <div className={styles.photo}>
-                  {photo ? <img src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale }} /> : <span>{member.initials}</span>}
-                </div>
-                <div><h4>{member.name === 'Derek Szeto' ? <>Derek<br />Szeto</> : member.name === 'Martin Choi' ? <>Martin<br />Choi</> : member.name}</h4><p>{roles[member.name] || 'Team Member'}</p><span className={styles.profileHint}>View profile ↗</span></div>
-                <TeamProfile member={member} photo={photo} role={roles[member.name] || 'Team Member'} />
-              </motion.article>
-            );
-          })}
+        <div className={styles.teamGroup}>
+          <h4 className={styles.groupHeading}>Co-founders</h4>
+          <div className={`${styles.team} ${styles.founderTeam}`}>
+            {founders.map((member, index) => <TeamCard key={member.name} member={member} index={index} />)}
+          </div>
         </div>
-        ))}
+        <div className={`${styles.teamGroup} ${styles.memberGroup}`}>
+          <h4 className={styles.groupHeading}>Team members</h4>
+          <div className={`${styles.team} ${styles.memberTeam}`}>
+            {otherMembers.map((member, index) => <TeamCard key={member.name} member={member} index={index} />)}
+          </div>
+        </div>
       </div>
     </section>
   );

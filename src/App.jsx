@@ -57,7 +57,21 @@ function ScrollToLocation({ location }) {
       const target = document.getElementById(id);
       if (target) {
         const navbar = document.querySelector('nav[aria-label="Primary navigation"]');
-        const offset = (navbar?.getBoundingClientRect().height || 72) + 32;
+        const navbarHeight = navbar?.getBoundingClientRect().height || 72;
+        // Sections already have space above their content. Count that space so
+        // the fixed navbar does not push the selected section down twice.
+        let contentInset = 0;
+        let section = target;
+        for (let depth = 0; depth < 3 && section; depth += 1) {
+          const padding = parseFloat(window.getComputedStyle(section).paddingTop) || 0;
+          contentInset += padding;
+          if (contentInset >= navbarHeight + 24) break;
+
+          const child = section.firstElementChild;
+          if (!child || Math.abs(child.getBoundingClientRect().top - section.getBoundingClientRect().top - padding) > 2) break;
+          section = child;
+        }
+        const offset = Math.max(0, navbarHeight + 24 - contentInset);
         window.scrollTo({
           top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset),
           behavior: reduceMotion ? 'instant' : 'smooth',

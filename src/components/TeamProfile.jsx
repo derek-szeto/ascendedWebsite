@@ -33,7 +33,7 @@ function ProfileDialog({ member, photo, role, onClose }) {
       }}>
       <div className={styles.content}>
         <button type="button" className={styles.close} onClick={close} aria-label="Close profile">×</button>
-        {photo ? <div className={styles.photoWrap}><img className={styles.photo} src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale }} /></div> : <div className={styles.initials}>{member.initials}</div>}
+        {photo ? <div className={styles.photoWrap}><img className={styles.photo} src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale, transformOrigin: member.photoTransformOrigin }} /></div> : <div className={styles.initials}>{member.initials}</div>}
         <div className={styles.details}>
           <span className={styles.eyebrow}>Meet the team</span>
           <h2 id={titleId}>{member.name}</h2>

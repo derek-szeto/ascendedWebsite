@@ -3,7 +3,7 @@ import TeamProfile from '../components/TeamProfile';
 import { motion } from 'framer-motion';
 import Marquee from '../components/Marquee';
 import EditorialHero from '../components/EditorialHero';
-import { teamMembers } from '../data/teamMembers';
+import { founders, otherMembers } from '../data/teamGroups';
 import derekPhoto from '../assets/dereknew.png';
 import rishabhPhoto from '../assets/rishabh.jpg';
 import styles from './About.module.css';
@@ -15,8 +15,8 @@ const aboutSections = [
 ];
 
 const roles = {
-  'Aarush Bharthepudi': 'Co-Founder & Director',
-  'Derek Szeto': 'Co-Founder · Lead Developer & Social Media',
+  'Aarush Bharthepudi': 'Co-Founder · Director',
+  'Derek Szeto': 'Co-Founder · Lead Developer',
   'Rishabh Dalal': 'Co-Founder · Curriculum & Community Outreach',
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
@@ -119,9 +119,14 @@ export default function About() {
               <span>Student-led team</span>
               <strong>The people moving it forward.</strong>
             </motion.div>
-            {[teamMembers.slice(0, 6), teamMembers.slice(6)].map((members, groupIndex) => (
-        <div key={groupIndex} className={`${styles.teamGrid} ${groupIndex === 1 ? styles.newMembers : ''}`}>
-              {members.map((member, i) => {
+            {[
+              { title: 'Co-founders', members: founders, gridClass: styles.founderGrid },
+              { title: 'Team members', members: otherMembers, gridClass: styles.memberGrid },
+            ].map((group) => (
+              <section key={group.title} className={styles.teamGroup} aria-label={group.title}>
+                <h3 className={styles.groupHeading}>{group.title}</h3>
+                <div className={`${styles.teamGrid} ${group.gridClass}`}>
+              {group.members.map((member, i) => {
                 const photo = photoOverrides[member.name] || member.img;
                 const photoClassName = `${styles.teamPhoto} ${
                   member.name === 'Rishabh Dalal' ? styles.rishabhPhoto : ''
@@ -146,7 +151,7 @@ export default function About() {
                           src={photo}
                           alt={member.name}
                           className={photoClassName}
-                          style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale }}
+                          style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale, transformOrigin: member.photoTransformOrigin }}
                         />
                       ) : (
                         <div className={styles.teamInitial}>{member.initials}</div>
@@ -162,7 +167,8 @@ export default function About() {
                   </motion.div>
                 );
               })}
-            </div>
+                </div>
+              </section>
             ))}
         </div>
       </div>

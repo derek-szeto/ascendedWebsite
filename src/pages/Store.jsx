@@ -1,26 +1,32 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import useTabTitle from '../hooks/useTabTitle';
-import heroVisual from '../assets/store_hero_visual.png';
 import creamSunShirt from '../assets/cream_sun_shirt.png';
 import blackBridgeShirt from '../assets/black_bridge_shirt.png';
 import foldedCreamShirt from '../assets/folded_cream_shirt.png';
 import foldedBlackShirt from '../assets/folded_black_shirt.png';
+import hoodieFront from '../assets/hoodie_front.png';
+import hoodieFrontBack from '../assets/hoodie_front_back.png';
+import hoodieBack from '../assets/hoodie_back.png';
 import { storeProducts } from '../data/storeProducts';
 import styles from './Store.module.css';
 
 const PRODUCT_GALLERIES = {
   'together-tee': [
-      { src: creamSunShirt, position: '15% center', size: '205% auto', label: 'Ascend Together tee, front view' },
-      { src: creamSunShirt, position: '85% center', size: '205% auto', label: 'Ascend Together tee, back view' },
-      { src: foldedCreamShirt, position: 'center', size: 'cover', label: 'Ascend Together tee, folded view' },
+      { src: creamSunShirt, position: '15% center', size: '205% auto', label: 'Ascend Together shirt, front view' },
+      { src: creamSunShirt, position: '85% center', size: '205% auto', label: 'Ascend Together shirt, back view' },
+      { src: foldedCreamShirt, position: 'center', size: 'cover', label: 'Ascend Together shirt, folded view' },
   ],
   'bridge-tee': [
-      { src: blackBridgeShirt, position: '15% center', size: '205% auto', label: 'Bridge the Gap tee, front view' },
-      { src: blackBridgeShirt, position: '85% center', size: '205% auto', label: 'Bridge the Gap tee, back view' },
-      { src: foldedBlackShirt, position: 'center', size: 'cover', label: 'Bridge the Gap tee, folded view' },
+      { src: blackBridgeShirt, position: '15% center', size: '205% auto', label: 'Bridge the Gap shirt, front view' },
+      { src: blackBridgeShirt, position: '85% center', size: '205% auto', label: 'Bridge the Gap shirt, back view' },
+      { src: foldedBlackShirt, position: 'center', size: 'cover', label: 'Bridge the Gap shirt, folded view' },
+  ],
+  'steady-hoodie': [
+      { src: hoodieFront, className: 'hoodieGallery', position: 'center', size: 'cover', label: 'Steady Rise hoodie, front view' },
+      { src: hoodieFrontBack, className: 'hoodieGallery', position: 'center', size: 'contain', label: 'Steady Rise hoodie, front and back view' },
+      { src: hoodieBack, className: 'hoodieGallery', position: 'center', size: 'cover', label: 'Steady Rise hoodie, back view' },
   ],
 };
 
@@ -31,23 +37,18 @@ const PRODUCTS = storeProducts.map((product) => ({
 }));
 
 const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+const STORE_SLOGANS = ['Bridge the gap', 'Ascend together', 'Education elevates everyone', 'Wear the mission'];
 
 function BagIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5h14l-1 12H6l-1-12Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>;
 }
 
-function ProductCard({ product, onAdd }) {
+function ProductCard({ product, index, onAdd }) {
   const [size, setSize] = useState('M');
   const [added, setAdded] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
-  const [galleryPaused, setGalleryPaused] = useState(false);
-  const gallery = product.gallery || [{ src: heroVisual, className: product.imageClass, label: product.name }];
-
-  useEffect(() => {
-    if (gallery.length < 2 || galleryPaused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-    const timer = window.setInterval(() => setActiveImage((current) => (current + 1) % gallery.length), 3600);
-    return () => window.clearInterval(timer);
-  }, [gallery.length, galleryPaused]);
+  const reducedMotion = useReducedMotion();
+  const gallery = product.gallery;
 
   const addItem = () => {
     onAdd(product, size);
@@ -56,21 +57,22 @@ function ProductCard({ product, onAdd }) {
   };
 
   return (
-    <motion.article className={styles.productCard} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .18 }} transition={{ duration: .55 }}>
-      <div className={`${styles.productVisual} ${gallery.length > 1 ? styles.hasGallery : ''}`} onMouseEnter={() => setGalleryPaused(true)} onMouseLeave={() => setGalleryPaused(false)} onFocusCapture={() => setGalleryPaused(true)} onBlurCapture={() => setGalleryPaused(false)}>
-        <AnimatePresence mode="sync" initial={false}>
+    <motion.article className={styles.productCard} initial={reducedMotion ? false : { opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }} transition={{ duration: .65, delay: reducedMotion ? 0 : index * .1, ease: [0.22, 1, 0.36, 1] }}>
+      <div className={`${styles.productVisual} ${gallery.length > 1 ? styles.hasGallery : ''}`}>
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeImage}
             className={`${styles.productImage} ${gallery[activeImage].className ? styles[gallery[activeImage].className] : ''}`}
             style={{ backgroundImage: `url(${gallery[activeImage].src})`, backgroundPosition: gallery[activeImage].position, backgroundSize: gallery[activeImage].size }}
             role="img"
             aria-label={gallery[activeImage].label}
-            initial={{ opacity: 0, scale: 1.025 }}
+            initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 1.035, x: 12 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: .48, ease: [0.22, 1, 0.36, 1] }}
+            exit={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: .985, x: -12 }}
+            transition={{ duration: reducedMotion ? 0 : .32, ease: [0.22, 1, 0.36, 1] }}
           />
         </AnimatePresence>
+        <span className={styles.viewLabel}>{gallery[activeImage].label.split(', ').at(-1)}</span>
         {gallery.length > 1 && <div className={styles.galleryControls}>
           <button type="button" onClick={() => setActiveImage((activeImage - 1 + gallery.length) % gallery.length)} aria-label="Previous product image">←</button>
           <div className={styles.galleryDots}>{gallery.map((image, index) => <button key={image.label} type="button" className={index === activeImage ? styles.activeDot : ''} onClick={() => setActiveImage(index)} aria-label={`Show image ${index + 1}`} aria-current={index === activeImage ? 'true' : undefined} />)}</div>
@@ -78,7 +80,7 @@ function ProductCard({ product, onAdd }) {
         </div>}
       </div>
       <div className={styles.productBody}>
-
+        <span className={styles.productType}>{product.id === 'steady-hoodie' ? 'Hoodie' : 'Shirt'}</span>
         <div className={styles.productHeading}>
           <h3>{product.name}</h3>
           <div className={styles.price}><strong>{money.format(product.price)}</strong></div>
@@ -96,7 +98,7 @@ function ProductCard({ product, onAdd }) {
           </div>
         </fieldset>
         <div className={styles.purchaseRow}>
-          <button className={added ? styles.added : ''} type="button" onClick={addItem}><BagIcon />{added ? 'In your bag' : 'Add to bag'} <span aria-hidden>+</span></button>
+          <button className={added ? styles.added : ''} type="button" onClick={addItem}><BagIcon />{added ? 'Added to bag' : 'Add to bag'}</button>
         </div>
       </div>
     </motion.article>
@@ -104,7 +106,7 @@ function ProductCard({ product, onAdd }) {
 }
 
 export default function Store() {
-  const navigate = useNavigate();
+  const reducedMotion = useReducedMotion();
   useTabTitle('Store | Ascend-Ed');
   const checkoutLock = useRef(false);
   const [cart, setCart] = useState(() => {
@@ -238,64 +240,75 @@ export default function Store() {
   return (
     <>
     <main className={styles.page}>
-      <div className={styles.announcement} aria-hidden="true" />
-
-      <section className={styles.welcome}>
-
+      <section className={styles.welcome} aria-labelledby="store-title">
         <div className={styles.welcomeMain}>
-          <div className={styles.welcomeCopy}>
-            <span className={styles.kicker}>Welcome to the shop</span>
-            <h1>Wear what you<br/><em>stand for.</em></h1>
-          </div>
-          <div className={styles.welcomeNote}>
-            <span aria-hidden>✦</span>
-            <p>Student-designed essentials that turn everyday style into support for education access.</p>
-            <button type="button" onClick={() => navigate('/store#collection')}>Explore the collection <span aria-hidden>→</span></button>
-          </div>
+          <motion.div className={styles.welcomeCopy} initial={reducedMotion ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, ease: [0.22, 1, 0.36, 1] }}>
+            <span className={styles.kicker}>Ascend-Ed Store</span>
+            <h1 id="store-title">Wear what you <em>stand for.</em></h1>
+          </motion.div>
+          <motion.aside className={styles.welcomeNote} aria-label="Store mission" initial={reducedMotion ? false : { opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: .18, ease: [0.22, 1, 0.36, 1] }}>
+            <p><strong>Style with a purpose.</strong> Student-designed essentials that turn everyday style into support for education access.</p>
+            <a className={styles.heroCta} href="#collection">Explore the collection <span aria-hidden="true">↓</span></a>
+          </motion.aside>
         </div>
         <div className={styles.welcomeBottom} aria-hidden="true" />
-        <div className={styles.welcomeTriangle} aria-hidden="true" />
+        <span className={styles.welcomeTriangle} aria-hidden="true" />
       </section>
 
-      <section className={styles.hero}>
-        <img src={heroVisual} alt="Ascend-Ed apparel collection featuring tees and a hoodie supporting education access" />
-        <div className={styles.heroGlow} aria-hidden="true" />
-        <div className={styles.dropStamp} aria-hidden="true"><span>Student built</span><strong>001</strong><small>Illinois / 2026</small></div>
-      </section>
-
-      <div className={styles.missionMarquee} aria-hidden="true"><div>WEAR THE MISSION <i>✦</i> BRIDGE THE GAP <i>✦</i> ASCEND TOGETHER <i>✦</i> EDUCATION ELEVATES EVERYONE <i>✦</i> WEAR THE MISSION <i>✦</i> BRIDGE THE GAP</div></div>
+      <div className={styles.missionMarquee} aria-hidden="true">
+        <div className={styles.marqueeTrack}>
+          {[0, 1, 2, 3].map((copy) => <div className={styles.marqueeSet} key={copy}>{STORE_SLOGANS.map((slogan) => <span key={slogan}>{slogan}<i>✦</i></span>)}</div>)}
+        </div>
+      </div>
 
       <section className={styles.shop} id="collection" aria-labelledby="shop-title">
-        <motion.header className={styles.shopHeader} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .4 }} transition={{ duration: .65 }}>
-          <div><span className={styles.kicker}>Wear the mission</span><h1 id="shop-title">Built to make<br/><em>an impact.</em></h1></div>
+        <motion.header className={styles.shopHeader} initial={reducedMotion ? false : { opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .4 }} transition={{ duration: .65 }}>
+          <div><h2 id="shop-title">Find your piece.</h2></div>
           <button className={styles.cartButton} type="button" onClick={() => setCartOpen(true)} aria-label={`Open cart with ${itemCount} items`}>
             <BagIcon /><span className={styles.cartButtonCopy}><small>Your cart</small><strong>{itemCount ? `${itemCount} item${itemCount === 1 ? '' : 's'}` : 'Start shopping'}</strong></span><b>{itemCount}</b>
           </button>
         </motion.header>
-        <motion.div className={styles.shopIntro} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, delay: .08 }}><p>Designed to start conversations and widen access to education. Small-batch, mission-first apparel created by students.</p></motion.div>
-        <div className={styles.productGrid}>{PRODUCTS.map((product) => <ProductCard key={product.id} product={product} onAdd={addToCart} />)}</div>
+        <motion.div className={styles.shopIntro} initial={reducedMotion ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, delay: .08 }}><p>Wear the mission. Choose a style and size. Local delivery or pickup is free.</p></motion.div>
+        <div className={styles.productGrid}>{PRODUCTS.map((product, index) => <ProductCard key={product.id} product={product} index={index} onAdd={addToCart} />)}</div>
 
-        <motion.div className={styles.impactBand} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><div><strong>Style with a purpose.</strong><p>Store proceeds go back into Ascend-Ed programs serving students across Illinois.</p></div><b>Education elevates everyone.</b></motion.div>
+        <motion.div className={styles.impactBand} initial={reducedMotion ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}>
+          <div className={styles.impactCopy}>
+            <strong>Good things grow when we move together.</strong>
+            <p>Every purchase helps support Ascend-Ed’s education programs and community work.</p>
+          </div>
+          <div className={styles.impactEmblem} aria-hidden="true">
+            <svg viewBox="0 0 220 220" fill="none">
+              <circle cx="110" cy="110" r="96" stroke="currentColor" strokeOpacity=".26" />
+              <circle cx="110" cy="110" r="78" stroke="currentColor" strokeOpacity=".18" />
+              <path d="M110 165V103" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+              <path d="M109 126c-25 0-39-16-40-42 26 2 40 16 40 42Z" fill="currentColor" fillOpacity=".72" />
+              <path d="M111 109c0-29 15-47 42-51-1 30-15 47-42 51Z" fill="currentColor" />
+              <path d="M84 166h52" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+              <circle cx="54" cy="68" r="3" fill="currentColor" />
+              <circle cx="170" cy="142" r="3" fill="currentColor" />
+            </svg>
+          </div>
+        </motion.div>
       </section>
 
       </main>
       {createPortal(<>
-      <button className={`${styles.floatingCart} ${itemCount ? styles.hasItems : ''}`} type="button" onClick={() => setCartOpen(true)} aria-label={`Open cart with ${itemCount} items`}>
-        <span className={styles.bagIcon}><BagIcon /><b>{itemCount}</b></span><span><small>Your bag</small><strong>{itemCount ? money.format(subtotal) : 'View cart'}</strong></span>
+      <button className={`${styles.floatingCart} ${itemCount ? styles.hasItems : styles.emptyCart}`} type="button" onClick={() => setCartOpen(true)} aria-label={`Open cart with ${itemCount} items`}>
+        <span className={styles.bagIcon}><BagIcon />{itemCount > 0 && <b>{itemCount}</b>}</span><span className={styles.floatingCartCopy}><small>Your bag</small><strong>{money.format(subtotal)}</strong></span>
       </button>
 
       <div className={`${styles.backdrop} ${cartOpen ? styles.visible : ''}`} onClick={() => setCartOpen(false)} aria-hidden={!cartOpen} />
-      <aside className={`${styles.cartDrawer} ${cartOpen ? styles.open : ''}`} aria-hidden={!cartOpen} inert={!cartOpen ? '' : undefined} aria-label="Shopping cart">
+      <aside className={`${styles.cartDrawer} ${cartOpen ? styles.open : ''}`} aria-hidden={!cartOpen} inert={!cartOpen} aria-label="Shopping cart">
         <header><div><span>Your bag</span><h2>{itemCount ? `${itemCount} item${itemCount === 1 ? '' : 's'} ready` : 'Make an impact'}</h2></div><button type="button" onClick={() => setCartOpen(false)} aria-label="Close cart">×</button></header>
         <div className={styles.fulfillmentNote}>
           <span aria-hidden="true">✦</span>
           <div><strong>Free local fulfillment</strong><small>Local delivery or pickup will be coordinated after purchase.</small></div>
         </div>
         <div className={styles.cartItems}>
-          {!cart.length && <div className={styles.empty}><span><BagIcon /></span><h3>Your bag is ready.</h3><p>Add a piece from Drop 001 and carry the mission with you.</p><button type="button" onClick={() => setCartOpen(false)}>Explore the drop</button></div>}
+          {!cart.length && <div className={styles.empty}><span><BagIcon /></span><h3>Your bag is ready.</h3><p>Add a piece and carry the mission with you.</p><button type="button" onClick={() => setCartOpen(false)}>Explore the drop</button></div>}
           {cart.map((item) => {
             const product = PRODUCTS.find((candidate) => candidate.id === item.id);
-            const preview = product?.gallery?.[0] || { src: heroVisual, className: product?.imageClass, label: product?.name || item.name };
+            const preview = product.gallery[0];
             return (
             <div className={styles.cartItem} key={item.key}>
               <div

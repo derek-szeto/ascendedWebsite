@@ -98,24 +98,6 @@ export default function CommunityClasses() {
             <p>See the current class sites, then tell us what subject support and session details would work best for your student.</p>
           </motion.header>
           <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className={styles.locationLead}>
-              <span className={styles.eyebrow}>Current class site</span>
-              <h2>Kenneth Young Center</h2>
-              <p>650 E. Algonquin Rd., Suite 104<br />Schaumburg, IL</p>
-            </div>
-            <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
-          </motion.div>
-
-          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <div className={styles.locationLead}>
-              <span className={styles.eyebrow}>Current class site</span>
-              <h2>Alive Center</h2>
-              <p>1211 Catalina Drive<br />Hanover Park<br />Every other Thursday, 4–5 PM</p>
-            </div>
-            <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
-          </motion.div>
-
-          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
             <div className={`${styles.locationLead} ${styles.locationLeadWithLogo}`}>
               <img src={nationalIndiaHubLogo} alt="National India Hub" className={styles.siteLogo} />
               <div>
@@ -124,6 +106,24 @@ export default function CommunityClasses() {
               </div>
             </div>
             <div className={styles.locationStatus}><i /> Enrolling now</div>
+          </motion.div>
+
+          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <div className={styles.locationLead}>
+              <span className={styles.eyebrow}>Current class site</span>
+              <h2>Kenneth Young Center</h2>
+              <p>650 E. Algonquin Rd., Suite 104<br />Schaumburg, IL</p>
+            </div>
+            <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
+          </motion.div>
+
+          <motion.div className={styles.locationCard} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.12 }}>
+            <div className={styles.locationLead}>
+              <span className={styles.eyebrow}>Current class site</span>
+              <h2>Alive Center</h2>
+              <p>1211 Catalina Drive<br />Hanover Park<br />Every other Thursday, 4–5 PM</p>
+            </div>
+            <div className={`${styles.locationStatus} ${styles.notEnrolling}`}><i /> Not enrolling</div>
           </motion.div>
 
           <motion.div className={styles.registerCard} id="register" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.20 }}>
@@ -163,7 +163,7 @@ export default function CommunityClasses() {
             <motion.div className={styles.tutorIntroCopy} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div className={styles.sectionHeader}>
                 <span>Meet your tutors</span>
-                <h2><strong>Learning feels easier</strong><b>with someone</b><em>in your side.</em></h2>
+                <h2><strong>Learning feels easier</strong><b>with someone</b><em>on your side.</em></h2>
               </div>
               <p>Ved and Rishabh are academically strong student tutors with experience in advanced math, computer science, and SAT/ACT concepts. They bring both subject knowledge and patience to each session, helping students learn from peers who understand the material and know how to explain it clearly.</p>
               <div className={styles.tutorCredibility} aria-label="Tutor strengths">
@@ -176,7 +176,7 @@ export default function CommunityClasses() {
               {tutors.map((tutor, i) => (
                 <motion.article key={tutor.name} onClick={() => setSelectedTutor(tutor)} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -6 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55 }}>
                   <div className={styles.tutorPhotoWrap}><img src={tutor.img} alt={`${tutor.displayName}, Ascend-Ed tutor`} /></div>
-                  <div className={styles.tutorCopy}><span>Main tutor</span><h3>{tutor.displayName}</h3><p>Co-Founder · Curriculum &amp; Community Outreach</p><button type="button" onClick={() => setSelectedTutor(tutor)}>Meet {tutor.displayName.split(' ')[0]} <span aria-hidden>&rarr;</span></button></div>
+                  <div className={styles.tutorCopy}><h3>{tutor.displayName}</h3><p>Co-Founder · Curriculum &amp; Community Outreach</p><button type="button" onClick={() => setSelectedTutor(tutor)}>Meet {tutor.displayName.split(' ')[0]} <span aria-hidden>&rarr;</span></button></div>
                 </motion.article>
               ))}
             </div>

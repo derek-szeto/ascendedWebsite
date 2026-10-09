@@ -68,7 +68,7 @@ export default function CurriculumExplorer({ subjects, applicationUrl }) {
       </div>
       <div className={styles.apply}>
         <div><h4>Let’s find your starting point.</h4><p>National India Hub is enrolling now. Tell us what you’d like help with.</p></div>
-        <a href={applicationUrl} target="_blank" rel="noopener noreferrer">Register</a>
+        <a href={applicationUrl} target="_blank" rel="noopener noreferrer">Register Now</a>
       </div>
     </div>
   );

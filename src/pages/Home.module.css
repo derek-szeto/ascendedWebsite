@@ -765,6 +765,18 @@
   grid-row: 3;
 }
 
+.missionBridgeInner > .donationHint {
+  grid-column: 2;
+  grid-row: 4;
+  max-width: 32rem;
+  margin-top: .7rem;
+  color: rgba(255,255,255,.76);
+  font-size: .91rem;
+  line-height: 1.5;
+}
+
+.donationHint strong { color: var(--mint); }
+
 .missionBridgeActions button,
 .missionBridgeActions a {
   min-width: 150px;
@@ -3743,7 +3755,6 @@ button.tutorProfileBtn:disabled {
   margin: -3.7rem auto 0;
   padding: clamp(2.5rem, 4vw, 3.5rem);
   border: 1px solid rgba(232,180,79,.28);
-  border-top: 3px solid var(--gold);
   border-radius: 20px;
   background:
     repeating-linear-gradient(115deg, rgba(255,255,255,.016) 0 1px, transparent 1px 34px),
@@ -3826,10 +3837,24 @@ button.tutorProfileBtn:disabled {
   grid-column: 2;
   grid-row: 1 / 4;
   place-items: center;
+  align-content: center;
+  row-gap: 1rem;
   align-self: center;
   width: 270px;
   min-height: 260px;
 }
+
+.donateInstruction {
+  position: relative;
+  z-index: 2;
+  max-width: 26ch;
+  color: rgba(255,255,255,.84);
+  font-size: .9rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.donateInstruction strong { color: var(--mint); }
 
 .donateBtn {
   position: relative;
@@ -4103,6 +4128,16 @@ button.tutorProfileBtn:disabled {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.ctaDonationHint {
+  margin-top: 1rem;
+  color: rgba(255,255,255,.76);
+  font-size: .91rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.ctaDonationHint strong { color: var(--mint); }
 
 .ctaBtns > a, .ctaBtns > button {
   display: inline-flex;

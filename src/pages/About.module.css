@@ -267,7 +267,7 @@
   justify-content: center;
 }
 
-.teamInfo { min-width: 0; }
+.teamInfo { display: flex; flex-direction: column; align-items: flex-start; align-self: stretch; min-width: 0; text-align: left; }
 
 .teamName {
   font-family: var(--serif);
@@ -375,11 +375,14 @@
   .teamGrid { grid-template-columns: 1fr; }
 }
 
-.profileHint { display: inline-block; margin-top: .75rem; color: var(--brand-green); font-size: .72rem; font-weight: 700; letter-spacing: .04em; }
+.profileHint { display: block; width: 100%; margin-top: auto; padding-top: .7rem; border-top: 1px solid rgba(22,101,52,.16); color: var(--brand-green); font-family: var(--sans); font-size: .85rem; font-weight: 700; line-height: 1.3; letter-spacing: 0; text-align: left; }
 
 @media (min-width: 721px) and (max-width: 1000px) { .teamGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 
-.newMembers { margin-top: .9rem; }
-
-
+.teamGroup + .teamGroup { margin-top: 2.75rem; padding-top: 2rem; border-top: 1px solid rgba(22,101,52,.18); }
+.groupHeading { display: flex; align-items: center; gap: 1rem; margin: 0 0 1rem; color: var(--ink); font-family: var(--serif); font-size: clamp(1.6rem, 2.3vw, 2rem); font-weight: 600; }
+.groupHeading::after { content: ''; flex: 1; height: 1px; background: rgba(22,101,52,.18); }
+.founderGrid .teamCard { background: rgba(255,253,246,.94); }
+.founderGrid .teamCard:hover { border-color: rgba(22,101,52,0.3); }
+.founderGrid .teamCard::before { display: none; }
