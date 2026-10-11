@@ -91,12 +91,9 @@ export default function Home() {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(0);
   const reduceMotion = useReducedMotion();
-  const issueStatsRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: issueStatsRef,
-    offset: ['start end', 'end start'],
-  });
-  const issueBgX = useTransform(scrollYProgress, [0, 1], ['18%', '-8%']);
+  const issueRef = useRef(null);
+  const { scrollYProgress: issueScrollProgress } = useScroll({ target: issueRef, offset: ['start end', 'end start'] });
+  const issueTrailX = useTransform(issueScrollProgress, [0, 1], ['14%', '-12%']);
 
   return (
     <div className={styles.root} id="top">
@@ -386,123 +383,66 @@ export default function Home() {
       </section>
 
 
-      <section className={styles.issueFeature} id="issue">
-      <div className={styles.issueIntroSection}>
-        <div className={styles.issueIntroInner}>
+      <section ref={issueRef} className={styles.issueFeature} id="issue" aria-labelledby="issue-heading">
+        <div className={styles.issueOneView}>
+          <motion.div className={styles.issueBgWord} style={{ x: reduceMotion ? 0 : issueTrailX }} aria-hidden="true">ILLINOIS</motion.div>
           <motion.div
-            className={styles.issueIntro}
-            initial={{ opacity: 0, y: 20 }}
+            className={styles.issueStory}
+            initial={reduceMotion ? false : { opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: .65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div>
-              <div className={styles.issueEyebrow}>The Issue</div>
-              <h2 className={styles.issueTitle}>
-                Education inequality in Illinois is not just a Chicago problem.<em> It affects students across the state.</em>
-              </h2>
-            </div>
-            <div className={styles.issueBody}>
-              <p>
+            <span className={styles.issueEyebrow}>The Issue</span>
+            <h2 className={styles.issueOneTitle} id="issue-heading">
+              Education inequality in Illinois is not just a Chicago problem.<em> It affects students across the state.</em>
+            </h2>
+            <div className={styles.issueExplanation}>
+              <p className={styles.issueLead}>
                 In Illinois, school funding is closely tied to local property taxes. That means the resources a student receives can depend more on where they live instead of what they need.
               </p>
-              <div className={styles.openingCallout}>
-                <span className={styles.calloutKicker}>The consequence</span>
-                <strong>Two students in the same county can receive <span>$12,000 less</span> in school funding simply because of where their street falls on a tax map.</strong>
-              </div>
-              <p className={styles.originLine}>
-                That&apos;s why we started <span>Ascend-Ed.</span>
-              </p>
+              <p className={styles.issueOneOrigin}>That&apos;s why we started <span>Ascend-Ed.</span></p>
             </div>
           </motion.div>
-        </div>
-      </div>
 
-      {/* ── MANIFESTO ── */}
-      <section className={styles.manifesto}>
-        <div className={styles.manifestoInner}>
-          <motion.div
-            className={styles.manifestoQuote}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className={styles.manifestoMark}>&ldquo;</span>
-            Two students in the same county can have more than a $12,000 difference in school funding each year — just because of where they live.
-            <span className={styles.manifestoMark}>&rdquo;</span>
-          </motion.div>
-          <motion.p
-            className={styles.manifestoSub}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            That isn&apos;t just a Chicago problem. That&apos;s an Illinois problem. And it&apos;s one we&apos;re working to close.
-          </motion.p>
-        </div>
-        <svg className={styles.manifestoShape} viewBox="0 0 200 200" fill="none" aria-hidden>
-          <circle cx="100" cy="100" r="98" stroke="rgba(232,180,79,0.12)" strokeWidth="1" />
-          <circle cx="100" cy="100" r="70" stroke="rgba(232,180,79,0.08)" strokeWidth="1" />
-        </svg>
-      </section>
-
-      <motion.div
-        className={styles.pullQuote}
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <svg className={styles.pqShape} viewBox="0 0 400 400" fill="none" aria-hidden>
-          <circle cx="200" cy="200" r="196" stroke="rgba(7,26,18,0.1)" strokeWidth="1.5" />
-          <circle cx="200" cy="200" r="140" stroke="rgba(7,26,18,0.07)" strokeWidth="1" />
-        </svg>
-        <div className={styles.pqInner}>
-          <span className={styles.issueQuoteLabel}>Why this matters</span>
-          <div className={styles.pqMark}>&ldquo;</div>
-          <p className={styles.pqText}>
-            Where you live should not decide <span>how far you go.</span>
-          </p>
-          <div className={styles.pqSource}>Ascend-Ed</div>
-        </div>
-      </motion.div>
-
-      <section ref={issueStatsRef} className={styles.issueStatsSection}>
-        <motion.div className={styles.issueBgWord} style={{ x: issueBgX }} aria-hidden>
-          ILLINOIS
-        </motion.div>
-        <div className={styles.issueStatsInner}>
-          <motion.header
-            className={styles.issueStatsHeader}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: .6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span>Illinois education gap · key statistics</span>
-          </motion.header>
-          <div className={styles.issueStats}>
-            {issueStats.map((s, i) => (
-              <motion.div
-                key={i}
-                className={styles.issueStatRow}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className={styles.issueStatN}>{s.n}</div>
-                <div className={styles.issueStatD}>{s.d}</div>
-              </motion.div>
-            ))}
+          <div className={styles.issueData}>
+            <div className={styles.issueDataHeader}>Illinois education gap · key statistics</div>
+            <div className={styles.issueStatGrid}>
+              {issueStats.map((stat, index) => (
+                <motion.div
+                  key={stat.n}
+                  className={styles.issueStatCard}
+                  initial={reduceMotion ? false : { opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: .5, delay: index * .05, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <strong className={styles.issueStatNumber}>{stat.n}</strong>
+                  <p className={styles.issueStatDescription}>{stat.d}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
+        <motion.div
+          className={styles.pullQuote}
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: .7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <svg className={styles.pqShape} viewBox="0 0 400 400" fill="none" aria-hidden="true">
+            <circle cx="200" cy="200" r="196" stroke="rgba(7,26,18,0.1)" strokeWidth="1.5" />
+            <circle cx="200" cy="200" r="140" stroke="rgba(7,26,18,0.07)" strokeWidth="1" />
+          </svg>
+          <div className={styles.pqInner}>
+            <span className={styles.issueQuoteLabel}>Why this matters</span>
+            <div className={styles.pqMark} aria-hidden="true">&ldquo;</div>
+            <p className={styles.pqText}>Where you live should not decide <span>how far you go.</span></p>
+            <div className={styles.pqSource}>Ascend-Ed</div>
+          </div>
+        </motion.div>
       </section>
-      </section>
-
-      {/* ── GET INVOLVED SECTION ── */}
       <section className={styles.getInvolvedSection} id="get-involved">
         <div className={styles.getInvolvedInner}>
           <motion.div

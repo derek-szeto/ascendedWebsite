@@ -21,8 +21,9 @@ const roles = {
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
   'Dhruv Dayeneni': 'Tutor & Incoming Director',
-  'Martin Choi': 'Tutor',
-  'Avanish Rajesh': 'Marketing Director',
+  'Martin Choi': 'Tutor & Web-Developer',
+  'Avanish Rajesh': 'Marketing Director & Tutor',
+  'Vikram Krishnamoorthi': 'Web-Development & Community Outreach',
 };
 
 const photoOverrides = {

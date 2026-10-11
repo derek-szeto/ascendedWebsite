@@ -21,17 +21,18 @@
 .team { display: grid; gap: .8rem; }
 .founderTeam { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .memberGroup { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(22,101,52,.18); }
-.memberTeam { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 45rem); margin: 0 auto; }
+.memberTeam { grid-template-columns: repeat(4, minmax(0, 1fr)); width: min(100%, 60rem); margin: 0 auto; }
 .team.founderTeam article { background: rgba(255,253,246,.94); }
 .team article { display: flex; flex-direction: column; position: relative; min-width: 0; overflow: hidden; border: 1px solid rgba(22,101,52,.14); border-radius: 17px 5px; background: rgba(255,255,255,.76); box-shadow: 0 12px 34px rgba(7,26,18,.05); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
 .team article:hover { transform: translateY(-5px); border-color: rgba(22,101,52,.3); box-shadow: 0 20px 46px rgba(7,26,18,.1); }
 .photo { flex-shrink: 0; aspect-ratio: 4 / 5; overflow: hidden; background: #dceadd; }.photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transition: transform .4s ease; }.team article:hover img { transform: scale(1.035); }.photo > span { height: 100%; display: grid; place-items: center; color: var(--brand-green); font-family: var(--serif); font-size: 2.142rem; }
+.photo img.rishabhPhoto { scale: 1.28; transform-origin: center 30%; }
 .team .cardCopy { display: grid; flex: 1; grid-template-rows: auto minmax(4.3rem, 1fr) auto; align-content: start; min-width: 0; padding: 1.1rem 1rem 1rem; text-align: left; }.team h5 { min-height: 2.2em; margin: 0 0 .55rem; color: #102f20; font-family: var(--serif); font-size: 1.8rem; font-weight: 700; line-height: 1.1; overflow-wrap: anywhere; }.team p { align-self: start; margin: 0; color: #586f60; font-size: .95rem; line-height: 1.45; }.memberTeam .cardCopy { grid-template-rows: auto minmax(2.6rem, 1fr) auto; }
 @keyframes aboutHeaderOrbit { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .65; } 50% { transform: translate3d(-12px,-8px,0) scale(1.06); opacity: 1; } }
 @keyframes aboutWordDrift { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(-18px, 10px, 0); } }
 @keyframes aboutOrbitBreathe { 0%, 100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.06); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .word, .section::after, .story header::after { animation: none; }.team article { transition: none; } }
-@media (max-width: 900px) { .team { grid-template-columns: repeat(3, minmax(0, 1fr)); }.memberTeam { width: 100%; } }
+@media (max-width: 900px) { .team { grid-template-columns: repeat(3, minmax(0, 1fr)); }.memberTeam { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; } }
 @media (max-width: 650px) { .section { padding: 5rem 0; }.inner { width: min(100% - 2rem, 1180px); }.storyCopy { padding-left: 1.2rem; }.principles, .team { grid-template-columns: 1fr; }.principles { padding: .5rem 1.5rem; }.principles article { padding: 1.25rem 0; }.principles article + article { border-left: 0; border-top: 1px solid rgba(22,101,52,.16); }.team article { display: grid; grid-template-columns: 125px 1fr; }.photo { aspect-ratio: 1; } }
 
 

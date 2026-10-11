@@ -239,3 +239,4 @@
   .bottomBar { width: min(100% - 2rem,1180px); align-items: flex-start; gap: .8rem; flex-direction: column; }
   .visuals b { display: none; }
 }
+

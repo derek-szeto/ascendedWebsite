@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.bottomBar}>
-        <span className={styles.bottomLeft}>© 2026 Ascend-Ed · EIN 42-3070575 · Nonprofit initiative · Illinois</span>
+        <span className={styles.bottomLeft}>© 2026 Ascend-Ed · Nonprofit initiative · Illinois</span>
         <NavLink to="/privacy" className={styles.bottomLink}>Privacy Policy</NavLink>
       </div>
     </footer>

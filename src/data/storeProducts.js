@@ -16,6 +16,7 @@ export const storeProducts = [
     stock: 12,
     eyebrow: 'Heavyweight cotton',
     description: 'A relaxed black shirt featuring our steady-rise turtle artwork on the back.',
+    disclaimer: 'The light effects on the green steps are for display purposes only. The shirt does not light up.',
     sizes: ['S', 'M', 'L'],
     imageClass: 'bridge',
   },

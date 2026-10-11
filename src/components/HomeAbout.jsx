@@ -12,9 +12,10 @@ const roles = {
   'Rishabh Dalal': 'Co-Founder · Curriculum & Community Outreach',
   'Vedsai Maddu': 'Co-Founder · Curriculum & Community Outreach',
   'Miles Mantasoot': 'Co-Founder · Social Media & Graphic Design',
-  'Dhruv Dayeneni': 'Tutor & Incoming Director',
-  'Martin Choi': 'Tutor',
-  'Avanish Rajesh': 'Marketing Director',
+  'Dhruv Dayeneni': 'Incoming Director & Tutor',
+  'Martin Choi': 'Tutor & Web-Developer',
+  'Avanish Rajesh': 'Marketing Director & Tutor',
+  'Vikram Krishnamoorthi': 'Web-Development & Community Outreach',
 };
 
 const photoOverrides = {
@@ -29,7 +30,7 @@ function TeamCard({ member, index }) {
   return (
     <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }}>
       <div className={styles.photo}>
-        {photo ? <img src={photo} alt={member.name} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale, transformOrigin: member.photoTransformOrigin }} /> : <span>{member.initials}</span>}
+        {photo ? <img src={photo} alt={member.name} className={member.name === 'Rishabh Dalal' ? styles.rishabhPhoto : undefined} style={{ objectPosition: member.photoPosition, objectFit: member.photoFit, scale: member.photoScale, transformOrigin: member.photoTransformOrigin }} /> : <span>{member.initials}</span>}
       </div>
       <div className={styles.cardCopy}>
         <h5>{firstName}{lastName.length > 0 && <><br />{lastName.join(' ')}</>}</h5>

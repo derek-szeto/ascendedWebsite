@@ -56,10 +56,6 @@ export default function Issue() {
             <p>
               In Illinois, school funding is closely tied to local property taxes. That means the resources a student receives can depend more on where they live instead of what they need.
             </p>
-            <div className={styles.openingCallout}>
-              <span className={styles.calloutKicker}>The consequence</span>
-              <strong>Two students in the same county can receive <span>$12,000 less</span> in school funding simply because of where their street falls on a tax map.</strong>
-            </div>
             <motion.p
               className={styles.originLine}
               initial={{ opacity: 0, x: -12 }}

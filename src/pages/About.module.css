@@ -253,6 +253,8 @@
 
 .rishabhPhoto {
   object-position: center 18%;
+  scale: 1.08;
+  transform-origin: center 28%;
 }
 
 .teamInitial {
@@ -351,6 +353,7 @@
 }
 
 .teamGrid { gap: 0.9rem; }
+.memberGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .teamCard {
   min-height: 144px;

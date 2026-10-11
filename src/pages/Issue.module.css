@@ -71,46 +71,6 @@
   margin: 0;
 }
 
-.openingCallout {
-  position: relative;
-  padding: 1.35rem 1.45rem 1.35rem 1.65rem;
-  border-left: 3px solid var(--gold);
-  background: linear-gradient(135deg, rgba(232,180,79,0.13), rgba(92,203,138,0.055));
-  box-shadow: 0 18px 44px rgba(0,0,0,0.16);
-}
-
-.openingCallout::after {
-  content: '';
-  position: absolute;
-  inset: 0.55rem;
-  border: 1px solid rgba(255,255,255,0.07);
-  pointer-events: none;
-}
-
-.calloutKicker {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.55rem;
-}
-
-.openingCallout strong {
-  display: block;
-  color: rgba(255,255,255,0.84);
-  font-family: var(--serif);
-  font-size: clamp(1.18rem, 2vw, 1.55rem);
-  font-weight: 600;
-  line-height: 1.45;
-}
-
-.openingCallout strong span {
-  color: var(--gold);
-  white-space: nowrap;
-}
-
 .originLine {
   position: relative;
   width: fit-content;
