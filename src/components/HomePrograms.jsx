@@ -93,7 +93,7 @@ export default function HomePrograms() {
         </div>
 
         <motion.div className={styles.cta} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div><span>Want to help us Grow?</span><h2>Programs get stronger when <em>more people show up.</em></h2></div>
+          <div><span>Want to help us Grow?</span><h2>Programs get stronger when more people show up.</h2></div>
           <button onClick={() => scrollToSection('get-involved')}>Get involved</button>
         </motion.div>
       </div>

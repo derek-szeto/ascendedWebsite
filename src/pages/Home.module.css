@@ -2740,7 +2740,7 @@ button.tutorProfileBtn:disabled {
 }
 
 .homeFaqHeader h2 em {
-  color: var(--mint);
+  color: inherit;
   font-family: var(--accent-font);
   font-style: italic;
   font-weight: 600;
@@ -3929,8 +3929,7 @@ button.tutorProfileBtn:disabled {
   animation: donateHereGlow 3.8s ease-in-out infinite;
 }
 .involvedLime,
-.missionBridge h2 em,
-.homeFaqHeader h2 em {
+.missionBridge h2 em {
   display: inline-block;
   transform-origin: 50% 76%;
   animation: accentWordHover 7.2s cubic-bezier(.45,0,.55,1) infinite;
@@ -3938,7 +3937,6 @@ button.tutorProfileBtn:disabled {
 }
 .involvedLime { animation-delay: -.9s; }
 .missionBridge h2 em { animation-delay: -1.8s; }
-.homeFaqHeader h2 em { animation-delay: -2.7s; }
 
 @keyframes accentWordHover {
   0%, 100% { translate: 0 0; text-shadow: 0 .04em .12em rgba(92,203,138,.1); }

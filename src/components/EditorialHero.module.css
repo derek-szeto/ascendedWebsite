@@ -214,6 +214,14 @@
     var(--forest);
 }
 
+.community .copy h1 {
+  font-size: clamp(3.5rem, 5.7vw, 5.75rem);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  margin-bottom: 2rem;
+  text-wrap: balance;
+}
+
 .community .copy::after {
   content: '';
   position: absolute;
@@ -359,6 +367,7 @@
   .hero { min-height: auto; grid-template-columns: 1fr; }
   .copy { min-height: 68vh; padding: calc(var(--nav-height) + 4rem) 1.5rem 6rem; clip-path: none; }
   .copy h1 { font-size: clamp(3.4rem, 13vw, 5.4rem); }
+  .community .copy h1 { font-size: clamp(3rem, 10vw, 4.5rem); }
   .mapPanel { padding: 4rem 1.5rem 6rem; }
   .mapInner { max-width: 620px; }
   .hero::before { inset: calc(var(--nav-height) + 0.6rem) 0.6rem 0.6rem; }

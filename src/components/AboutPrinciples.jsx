@@ -2,7 +2,7 @@ import styles from './AboutPrinciples.module.css';
 
 const ideas = [
   'Students lead the way. We listen to families, test ideas quickly, and turn their needs into practical action.',
-  'Every contribution has a clear path. Public breakdowns show what comes in and exactly where it goes.',
+  'Funds we raise go toward technology and learning materials for students, as well as trusted organizations working to close the education gap.',
   'Our work starts close to home and reaches across Illinois, expanding education access one community at a time.',
 ];
 

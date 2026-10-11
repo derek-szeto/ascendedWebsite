@@ -46,5 +46,5 @@ export const teamMembers = [
 ,
   { name: 'Martin Choi', initials: 'MC', img: martinPhoto, photoPosition: 'center 35%', qualifications: ['Advanced mathematics: Multivariable Calculus', 'Advanced mathematics: AP Statistics'] },
   { name: 'Avanish Rajesh', initials: 'AR', img: avanishPhoto, photoPosition: 'center top', photoScale: 1.25, photoTransformOrigin: 'center top', qualifications: ['Marketing internship experience', 'Advanced mathematics: Calculus BC', 'Advanced mathematics: AP Statistics'] },
-  { name: 'Vikram Krishnamoorthi', initials: 'VK', img: vikramPhoto, photoPosition: 'center 20%', bio: 'Web development and community outreach.', qualifications: ['Advanced mathematics: Multivariable Calculus', '4 years of advanced coding experience'] },
+  { name: 'Vikram Krishnamoorthi', initials: 'VK', img: vikramPhoto, photoPosition: 'center 20%', qualifications: ['Advanced mathematics: Multivariable Calculus', '4 years of advanced coding experience'] },
 ];
